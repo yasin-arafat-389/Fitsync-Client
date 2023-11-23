@@ -10,6 +10,7 @@ import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlinePoweroff } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
+import { MdDashboard } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
@@ -33,11 +34,20 @@ const ProfileMenu = () => {
     navigate("/dashboard");
   };
 
+  let handleGoToProfile = () => {
+    navigate("/profile");
+  };
+
   const profileMenuItems = [
     {
       label: "Dashboard",
-      icon: <AiOutlineUser fontSize={"20px"} />,
+      icon: <MdDashboard />,
       action: handleGoToDashboard,
+    },
+    {
+      label: "Profile",
+      icon: <AiOutlineUser fontSize={"20px"} />,
+      action: handleGoToProfile,
     },
     {
       label: "Sign Out",

@@ -57,7 +57,7 @@ const Login = () => {
         const userInfo = {
           name: result.user?.displayName,
           email: result.user?.email,
-          role: "user",
+          role: "member",
         };
         axios.post("/users", userInfo).then(() => {
           navigate("/");
