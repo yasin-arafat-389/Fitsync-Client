@@ -3,10 +3,8 @@ import MainLayout from "../Layouts/MainLayout";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
-import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import AdminRoute from "./AdminRoute";
-import Payment from "../Components/Payment/Payment";
+import Home from "../Pages/Home/Home";
 
 const router = createBrowserRouter([
   {
@@ -16,19 +14,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div>Home</div>,
+        element: <Home />,
       },
       {
-        path: "/about",
-        element: <div>About</div>,
+        path: "/gallery",
+        element: <div>Gallery</div>,
       },
       {
-        path: "/contact",
-        element: (
-          <PrivateRoute>
-            <div>Contact</div>,
-          </PrivateRoute>
-        ),
+        path: "/trainer",
+        element: <div>Trainer</div>,
+      },
+      {
+        path: "/classes",
+        element: <div>Classes</div>,
+      },
+      {
+        path: "/community",
+        element: <div>Community</div>,
+      },
+      {
+        path: "/profile",
+        element: <div>This is Profile</div>,
       },
       {
         path: "/sign-in",
@@ -48,37 +54,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: (
-          <PrivateRoute>
-            <div>This is home</div>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/e-commerce",
-        element: (
-          <PrivateRoute>
-            <div>This is e-commerce</div>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/admin",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <div>This is admin</div>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/payment",
-        element: (
-          <PrivateRoute>
-            <Payment />
-          </PrivateRoute>
-        ),
+        element: <div>This is dash home</div>,
       },
     ],
   },

@@ -69,25 +69,25 @@ function NavList() {
       </li>
 
       <li>
-        <NavLink to="/about" className="p-3 font-bold">
+        <NavLink to="/gallery" className="p-3 font-bold">
           Gallery
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/contact" className="p-3 font-bold">
+        <NavLink to="/trainer" className="p-3 font-bold">
           Trainer
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/contact" className="p-3 font-bold">
+        <NavLink to="/classes" className="p-3 font-bold">
           Classes
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/contact" className="p-3 font-bold">
+        <NavLink to="/community" className="p-3 font-bold">
           Community
         </NavLink>
       </li>
@@ -108,10 +108,10 @@ export default function NavBar() {
   }, []);
 
   return (
-    <div className="mx-auto p-2 shadow-lg sticky top-0 bg-[#eef1f3] z-10">
+    <div className="mx-auto p-2 shadow-lg sticky top-0 bg-[#eef1f3] z-20">
       <div className="w-[95%] mx-auto flex items-center text-blue-gray-900 justify-between">
         <img
-          className="w-[20%]"
+          className="w-[40%] md:w-[30%] lg:w-[20%] "
           src="https://i.ibb.co/q7L0zZ5/fit-Sync-prev-ui.png"
           alt=""
         />
