@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Home from "../Pages/Home/Home";
+import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <div>This is Profile</div>,
+      },
+      {
+        path: "/blog/details/:id",
+        element: <BlogDetails />,
       },
       {
         path: "/sign-in",

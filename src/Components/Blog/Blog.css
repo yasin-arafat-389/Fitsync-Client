@@ -1,0 +1,13 @@
+.elipse {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.ellipsis {
+  -webkit-line-clamp: 2;
+}
+
+.ellipsis-desc {
+  -webkit-line-clamp: 3;
+}
