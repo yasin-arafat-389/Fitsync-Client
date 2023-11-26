@@ -10,6 +10,8 @@ import Gallery from "../Pages/Gallery/Gallery";
 import Trainer from "../Pages/Trainer/Trainer";
 import BeATrainer from "../Pages/BeATrainer/BeATrainer";
 import PrivateRoute from "./PrivateRoute";
+import TrainerDetails from "../Pages/TrainerDetails/TrainerDetails";
+import Pricing from "../Pages/Pricing/Pricing";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <BeATrainer />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/trainer/details/:id",
+        element: (
+          <PrivateRoute>
+            <TrainerDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/pricing",
+        element: (
+          <PrivateRoute>
+            <Pricing />
           </PrivateRoute>
         ),
       },

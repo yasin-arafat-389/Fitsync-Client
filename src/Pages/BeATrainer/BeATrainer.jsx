@@ -29,6 +29,7 @@ const BeATrainer = () => {
     name: "",
     email: user?.email,
     age: "",
+    experience: "",
     status: "requested",
     skills: [],
     availableDays: [],
@@ -148,8 +149,20 @@ const BeATrainer = () => {
                           color="blue"
                           label="Enter your age"
                           name="age"
-                          type="text"
+                          type="number"
                           value={formData.age}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+
+                      <div className="w-full mt-4">
+                        <Input
+                          color="blue"
+                          label="Years of experience"
+                          name="experience"
+                          type="number"
+                          value={formData.experience}
                           onChange={handleInputChange}
                           required
                         />
