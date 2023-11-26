@@ -6,6 +6,7 @@ import Registration from "../Pages/Registration/Registration";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Home from "../Pages/Home/Home";
 import BlogDetails from "../Pages/BlogDetails/BlogDetails";
+import Gallery from "../Pages/Gallery/Gallery";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/gallery",
-        element: <div>Gallery</div>,
+        element: <Gallery />,
       },
       {
         path: "/trainer",

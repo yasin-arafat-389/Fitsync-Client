@@ -6,6 +6,7 @@ import router from "./Routes/Routes";
 import AuthContext from "./Contexts/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "@material-tailwind/react";
+import "aos/dist/aos.css";
 
 const queryClient = new QueryClient();
 

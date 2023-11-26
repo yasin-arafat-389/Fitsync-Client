@@ -98,8 +98,8 @@ const Registration = () => {
               <div className="px-6 py-4">
                 <div className="flex justify-center mx-auto">
                   <img
-                    className="w-[30%]"
-                    src="https://i.ibb.co/kBDBhVs/dinedash.png"
+                    className="w-[60%]"
+                    src="https://i.ibb.co/q7L0zZ5/fit-Sync-prev-ui.png"
                     alt=""
                   />
                 </div>
