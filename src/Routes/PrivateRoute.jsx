@@ -2,12 +2,13 @@
 import { Navigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
+import RouteChangeLoader from "../Utilities/RouteChangeLoader/RouteChangeLoader";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div>Loading</div>;
+    return <RouteChangeLoader />;
   }
 
   if (!user) {
