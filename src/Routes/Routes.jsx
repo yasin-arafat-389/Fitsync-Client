@@ -7,6 +7,9 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import Home from "../Pages/Home/Home";
 import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 import Gallery from "../Pages/Gallery/Gallery";
+import Trainer from "../Pages/Trainer/Trainer";
+import BeATrainer from "../Pages/BeATrainer/BeATrainer";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +27,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/trainer",
-        element: <div>Trainer</div>,
+        element: <Trainer />,
+      },
+      {
+        path: "/become-trainer",
+        element: (
+          <PrivateRoute>
+            <BeATrainer />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/classes",

@@ -2,7 +2,7 @@ import Lottie from "lottie-react";
 import loginAnimation from "../../Utilities/LottieAnimations/login-animation.json";
 import { Button, Input } from "@material-tailwind/react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import { ImSpinner9 } from "react-icons/im";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+  let location = useLocation();
   let { login, googleLogin, user, loading: preventAccess } = useAuth();
   let axios = useAxios();
   let navigate = useNavigate();
@@ -40,7 +41,7 @@ const Login = () => {
 
     login(formData.email, formData.password)
       .then(() => {
-        navigate("/");
+        navigate(location?.state ? location?.state : "/");
         toast.success("Successfully Logged In!");
       })
       .catch((error) => {
@@ -60,7 +61,7 @@ const Login = () => {
           role: "member",
         };
         axios.post("/users", userInfo).then(() => {
-          navigate("/");
+          navigate(location?.state ? location?.state : "/");
           toast.success("Successfully Logged In!");
         });
       })

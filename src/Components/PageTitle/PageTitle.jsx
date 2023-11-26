@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
-const PageTitle = ({ title }) => {
+const PageTitle = ({ title, from, link }) => {
   return (
     <div>
       <div
@@ -22,7 +22,7 @@ const PageTitle = ({ title }) => {
             <ol className="inline-flex items-center space-x-1 md:space-x-3">
               <li className="inline-flex items-center">
                 <Link
-                  to="/"
+                  to={link ? link : "/"}
                   className="text-sm text-gray-700 hover:text-gray-900 inline-flex items-center dark:text-gray-400 dark:hover:text-white"
                 >
                   <svg
@@ -33,7 +33,7 @@ const PageTitle = ({ title }) => {
                   >
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                   </svg>
-                  Home
+                  {from ? from : "Home"}
                 </Link>
               </li>
               <li>
@@ -50,12 +50,9 @@ const PageTitle = ({ title }) => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <Link
-                    to="/gallery"
-                    className="text-gray-700 hover:text-gray-900 ml-1 md:ml-2 text-sm font-bold dark:text-gray-400 dark:hover:text-white"
-                  >
+                  <a className="text-gray-700 hover:text-gray-900 ml-1 md:ml-2 text-sm font-bold dark:text-gray-400 dark:hover:text-white">
                     {title}
-                  </Link>
+                  </a>
                 </div>
               </li>
             </ol>
