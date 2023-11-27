@@ -91,6 +91,56 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <div>This is dash home</div>,
       },
+
+      // Admin Routes
+      {
+        path: "/all-subscribers",
+        element: <div>This is All sub</div>,
+      },
+      {
+        path: "/all-trainers",
+        element: <div>This is All trainers</div>,
+      },
+      {
+        path: "/applied-trainers",
+        element: <div>This is applied trainers</div>,
+      },
+      {
+        path: "/balance",
+        element: <div>This is Balance</div>,
+      },
+
+      // Trainer routes
+      {
+        path: "/manage-slots",
+        element: <div>This is manage slots</div>,
+      },
+      {
+        path: "/manage-members",
+        element: <div>This is manage members</div>,
+      },
+      {
+        path: "/add-forum",
+        element: <div>This is add forum</div>,
+      },
+      {
+        path: "/add-class",
+        element: <div>This is add class</div>,
+      },
+
+      // Member route
+      {
+        path: "/activity-log",
+        element: <div>This is activity</div>,
+      },
+      {
+        path: "/profile-settings",
+        element: <div>This is profile settings</div>,
+      },
+      {
+        path: "/recommended-classes",
+        element: <div>This is reco</div>,
+      },
     ],
   },
 ]);
