@@ -12,6 +12,9 @@ import BeATrainer from "../Pages/BeATrainer/BeATrainer";
 import PrivateRoute from "./PrivateRoute";
 import TrainerDetails from "../Pages/TrainerDetails/TrainerDetails";
 import Pricing from "../Pages/Pricing/Pricing";
+import Classes from "../Pages/Classes/Classes";
+import AddNewClass from "../TrainerPages/AddNewClass/AddNewClass";
+import TrainerRoute from "./TrainerRoute";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/classes",
-        element: <div>Classes</div>,
+        element: <Classes />,
       },
       {
         path: "/community",
@@ -125,7 +128,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-class",
-        element: <div>This is add class</div>,
+        element: (
+          <TrainerRoute>
+            <AddNewClass />,
+          </TrainerRoute>
+        ),
       },
 
       // Member route

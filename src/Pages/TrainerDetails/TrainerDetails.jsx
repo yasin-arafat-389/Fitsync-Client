@@ -1,13 +1,17 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoader";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
 import { Button, Chip } from "@material-tailwind/react";
 import { FaRegClock } from "react-icons/fa6";
+import useAuth from "../../Hooks/useAuth";
+import useRole from "../../Hooks/useRole";
 
 const TrainerDetails = () => {
   let singleTrainer = useParams();
   let axios = useAxios();
+  let { user } = useAuth();
+  let [role] = useRole();
 
   let { data: trainer, isLoading } = useQuery({
     queryKey: ["singleTrainer", singleTrainer.id],
@@ -17,11 +21,18 @@ const TrainerDetails = () => {
     },
   });
 
+  let saveInfo = (name, slot) => {
+    const upadatedDetails = [name, slot];
+    localStorage.setItem(`${user?.email}`, JSON.stringify(upadatedDetails));
+  };
+
   if (isLoading) {
     return <RouteChangeLoader />;
   }
 
-  console.log(trainer);
+  if (role === "trainer") {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>
@@ -66,7 +77,10 @@ const TrainerDetails = () => {
                 {trainer.availableTime.map((item, index) => (
                   <div key={index}>
                     <Link to="/pricing">
-                      <Button className="bg-green-500 text-[16px] flex justify-center items-center gap-3">
+                      <Button
+                        className="bg-green-500 text-[16px] flex justify-center items-center gap-3"
+                        onClick={() => saveInfo(trainer.name, item)}
+                      >
                         <FaRegClock fontSize={"18"} /> {item}
                       </Button>
                     </Link>

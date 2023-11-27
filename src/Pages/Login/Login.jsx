@@ -2,7 +2,7 @@ import Lottie from "lottie-react";
 import loginAnimation from "../../Utilities/LottieAnimations/login-animation.json";
 import { Button, Input } from "@material-tailwind/react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useState } from "react";
@@ -12,7 +12,7 @@ import { ImSpinner9 } from "react-icons/im";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   let location = useLocation();
-  let { login, googleLogin } = useAuth();
+  let { login, googleLogin, user } = useAuth();
   let axios = useAxios();
   let navigate = useNavigate();
 
@@ -62,6 +62,10 @@ const Login = () => {
         console.log(error);
       });
   };
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>

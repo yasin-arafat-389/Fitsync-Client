@@ -1,4 +1,4 @@
-import { Card, List, ListItemPrefix } from "@material-tailwind/react";
+import { List, ListItemPrefix } from "@material-tailwind/react";
 import { NavLink } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
 import { MdDashboard } from "react-icons/md";
@@ -21,7 +21,7 @@ const Sidebar = () => {
   return (
     <div className="hidden md:hidden lg:block">
       <div>
-        <Card className="w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+        <div className="w-full max-w-[20rem] bg-yellow-200 rounded-xl p-4 shadow-xl shadow-blue-gray-900/5">
           <div className="mb-2 p-4">
             <img src="https://i.ibb.co/q7L0zZ5/fit-Sync-prev-ui.png" alt="" />
           </div>
@@ -168,7 +168,7 @@ const Sidebar = () => {
               </div>
             </NavLink>
           </List>
-        </Card>
+        </div>
       </div>
     </div>
   );

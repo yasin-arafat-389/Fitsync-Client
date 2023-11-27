@@ -1,10 +1,132 @@
+import toast from "react-hot-toast";
 import PageTitle from "../../Components/PageTitle/PageTitle";
+import useAuth from "../../Hooks/useAuth";
+import useAxios from "../../Hooks/useAxios";
+import { Navigate, useNavigate } from "react-router-dom";
+import "./Pricing.css";
+import { Chip } from "@material-tailwind/react";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import { ImSpinner9 } from "react-icons/im";
+import useRole from "../../Hooks/useRole";
 
 const Pricing = () => {
+  let { user } = useAuth();
+  let axios = useAxios();
+  let navigate = useNavigate();
+  let [role] = useRole();
+  let [wait1, setWait1] = useState(false);
+  let [wait2, setWait2] = useState(false);
+  let [wait3, setWait3] = useState(false);
+
+  let dataFromLS = JSON.parse(localStorage.getItem(user?.email));
+
+  let trainer;
+  let slot;
+
+  if (dataFromLS) {
+    trainer = dataFromLS[0];
+    slot = dataFromLS[1];
+  }
+
+  let saveToDB1 = (packageName, price) => {
+    setWait1(true);
+    let storeToDB = { trainer, slot, packageName, price, email: user?.email };
+    axios.post("/package/subscribed", storeToDB).then(() => {
+      toast.success("Successfully Joined");
+      setWait1(false);
+      navigate("/trainer");
+      localStorage.removeItem(user?.email);
+    });
+  };
+
+  let saveToDB2 = (packageName, price) => {
+    setWait2(true);
+    let storeToDB = { trainer, slot, packageName, price, email: user?.email };
+    axios.post("/package/subscribed", storeToDB).then(() => {
+      toast.success("Successfully Joined");
+      setWait2(false);
+      navigate("/trainer");
+      localStorage.removeItem(user?.email);
+    });
+  };
+
+  let saveToDB3 = (packageName, price) => {
+    setWait3(true);
+    let storeToDB = { trainer, slot, packageName, price, email: user?.email };
+    axios.post("/package/subscribed", storeToDB).then(() => {
+      toast.success("Successfully Joined");
+      setWait3(false);
+      navigate("/trainer");
+      localStorage.removeItem(user?.email);
+    });
+  };
+
+  let handleRemove = () => {
+    Swal.fire({
+      title: `Are you sure you want to remove ${trainer}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Remove",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem(user?.email);
+        toast.success(`${trainer} has been removed`);
+        navigate("/trainer");
+      }
+    });
+  };
+
+  if (!dataFromLS) {
+    return <Navigate to="/" />;
+  }
+
+  if (role === "trainer") {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div>
       <div>
         <PageTitle title="Pricing" from="Trainer" link="/trainer" />
+
+        {/* Selected Trainer Info */}
+        <div className="trainer-card flex">
+          <div className="w-4/5">
+            <div className="flex gap-2">
+              <h1 className="text-white font-bold">Your selected trainer:</h1>
+              <h1 className="text-yellow-600 font-bold">{dataFromLS[0]}</h1>
+            </div>
+
+            <div className="flex items-center gap-2 mt-5">
+              <h1 className="text-white font-bold">Your selected time slot:</h1>
+              <h1 className="text-yellow-600 font-bold">
+                <Chip
+                  color="green"
+                  value={dataFromLS[1]}
+                  className="text-[16px] capitalize"
+                />
+              </h1>
+            </div>
+          </div>
+
+          <button type="button" className="close w-1/5" onClick={handleRemove}>
+            <svg
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
 
         <div className=" py-16">
           <div className="grid lg:grid-cols-3 md:grid-cols-1 justify-items-center px-8 gap-10 md:gap-10 lg:gap-0 text-zinc-800 ">
@@ -89,8 +211,18 @@ const Pricing = () => {
                 </p>
 
                 <div className="flex justify-center mt-8 ">
-                  <button className=" px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl">
-                    Join Now
+                  <button
+                    className=" px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl"
+                    onClick={() => saveToDB1("Silver", "200")}
+                  >
+                    {wait1 ? (
+                      <div className="flex items-center justify-center gap-4">
+                        <ImSpinner9 className="animate-spin text-[20px]" />
+                        Joining
+                      </div>
+                    ) : (
+                      "Join Now"
+                    )}
                   </button>
                 </div>
               </div>
@@ -194,8 +326,18 @@ const Pricing = () => {
                   <b>Access to advanced gym equipment</b>
                 </p>
                 <div className="flex justify-center mt-8">
-                  <button className="px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl">
-                    Join Now
+                  <button
+                    className="px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl"
+                    onClick={() => saveToDB2("Gold", "800")}
+                  >
+                    {wait2 ? (
+                      <div className="flex items-center justify-center gap-4">
+                        <ImSpinner9 className="animate-spin text-[20px]" />
+                        Joining
+                      </div>
+                    ) : (
+                      "Join Now"
+                    )}
                   </button>
                 </div>
               </div>
@@ -204,7 +346,7 @@ const Pricing = () => {
             <div className="flex flex-col items-center bg-[#F1F5F9]  p-8 rounded-lg shadow-lg max-w-sm">
               <div>
                 <h2 className="font-extrabold text-3xl text-center mb-2">
-                  Enterprise
+                  Diamond
                 </h2>
                 <p className="opacity-60 text-center">
                   For enterprise level events
@@ -280,8 +422,18 @@ const Pricing = () => {
                   <b>Unlimited access to personal training sessions</b>
                 </p>
                 <div className="flex justify-center mt-8 ">
-                  <button className=" px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl">
-                    Join Now
+                  <button
+                    className=" px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl"
+                    onClick={() => saveToDB3("Diamond", "400")}
+                  >
+                    {wait3 ? (
+                      <div className="flex items-center justify-center gap-4">
+                        <ImSpinner9 className="animate-spin text-[20px]" />
+                        Joining
+                      </div>
+                    ) : (
+                      "Join Now"
+                    )}
                   </button>
                 </div>
               </div>

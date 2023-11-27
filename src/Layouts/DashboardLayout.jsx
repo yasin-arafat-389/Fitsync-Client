@@ -8,8 +8,8 @@ const DashboardLayout = () => {
   let { user } = useAuth();
 
   return (
-    <div className="bg-blue-gray-50/50 h-screen">
-      <div className=" w-[90%] mx-auto  py-5">
+    <div className="">
+      <div className=" w-[90%] mx-auto  ">
         {/* Top Banner */}
         <div
           className="flex items-center justify-center bg-blue-500 text-white px-6 py-3.5 rounded 

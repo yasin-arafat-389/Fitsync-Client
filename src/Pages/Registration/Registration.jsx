@@ -1,6 +1,6 @@
 import { Input } from "@material-tailwind/react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
@@ -10,7 +10,7 @@ import useAxios from "../../Hooks/useAxios";
 
 const Registration = () => {
   const [loading, setLoading] = useState(false);
-  let { createUser, update, logOut } = useAuth();
+  let { createUser, update, logOut, user } = useAuth();
   let navigate = useNavigate();
   let axios = useAxios();
 
@@ -80,6 +80,10 @@ const Registration = () => {
         setLoading(false);
       });
   };
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>

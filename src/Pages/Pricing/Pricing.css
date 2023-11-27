@@ -1,0 +1,33 @@
+.trainer-card {
+  width: 40%;
+  margin: auto;
+  margin-top: 40px;
+  border-radius: 0.5rem;
+  background: #606c88;
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
+  background: linear-gradient(to right top, #3f4c6b, #606c88);
+  padding: 1rem;
+  color: rgb(107, 114, 128);
+  box-shadow: 0px 87px 78px -39px rgba(0, 0, 0, 0.4);
+}
+
+.close {
+  margin: -0.375rem -0.375rem -0.375rem auto;
+  height: 2rem;
+  width: 2rem;
+  display: inline-flex;
+  border-radius: 0.5rem;
+  background-color: #606c88;
+  padding: 0.375rem;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+}
+
+.close svg {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.close:hover {
+  background-color: rgb(58, 69, 83);
+}

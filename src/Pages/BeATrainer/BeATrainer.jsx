@@ -16,11 +16,13 @@ import useAxios from "../../Hooks/useAxios";
 import { Navigate, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import useRole from "../../Hooks/useRole";
 
 const BeATrainer = () => {
   let axios = useAxios();
   let navigate = useNavigate();
   let { user } = useAuth();
+  let [role] = useRole();
 
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -103,6 +105,10 @@ const BeATrainer = () => {
       return res.data;
     },
   });
+
+  if (role === "trainer") {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>

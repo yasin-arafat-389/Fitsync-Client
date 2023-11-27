@@ -7,10 +7,12 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoader";
 import { Button } from "@material-tailwind/react";
+import useRole from "../../Hooks/useRole";
 
 const Trainer = () => {
   let axios = useAxios();
   let { user } = useAuth();
+  let [role] = useRole();
 
   let { data = [] } = useQuery({
     queryKey: ["trainer", user?.email],
@@ -124,7 +126,11 @@ const Trainer = () => {
                       </div>
                     </div>
 
-                    <div className="flex justify-center items-center mt-5">
+                    <div
+                      className={`flex justify-center items-center mt-5  ${
+                        role === "trainer" && "hidden"
+                      }`}
+                    >
                       <Link to={`/trainer/details/${item._id}`}>
                         <Button size="sm" className="capitalize bg-[#0866ff]">
                           Know More
