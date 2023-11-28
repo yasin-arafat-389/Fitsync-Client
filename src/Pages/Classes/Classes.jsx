@@ -1,6 +1,31 @@
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Typography,
+} from "@material-tailwind/react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../Hooks/useAxios";
+import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoader";
+import { Link } from "react-router-dom";
 
-const classNamees = () => {
+const Classes = () => {
+  let axios = useAxios();
+
+  let { data = [], isLoading } = useQuery({
+    queryKey: ["allClasses"],
+    queryFn: async () => {
+      let res = await axios.get("/classes").then();
+      return res.data;
+    },
+  });
+
+  if (isLoading) {
+    return <RouteChangeLoader />;
+  }
+
   return (
     <div>
       <PageTitle title="Classes" />
@@ -195,9 +220,33 @@ const classNamees = () => {
       </div>
 
       {/* All classes */}
-      <div></div>
+      <div className="my-[100px]">
+        <h2 className="mt-4 text-3xl text-center font-bold text-blue-900 sm:text-4xl xl:text-5xl">
+          Featured Classes
+        </h2>
+
+        <div className="w-[80%] mx-auto mt-[60px] grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10">
+          {data.map((item, index) => (
+            <Card className="bg-gray-200 shadow-xl" key={index}>
+              <CardBody>
+                <Typography variant="h5" color="blue-gray" className="mb-2">
+                  <div className="line-clamp-1">{item.classTitle}</div>
+                </Typography>
+                <Typography>
+                  <div className="line-clamp-3">{item.classDescription}</div>
+                </Typography>
+              </CardBody>
+              <CardFooter className="pt-0">
+                <Link to={`/class/details/${item._id}`}>
+                  <Button>See Details</Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default classNamees;
+export default Classes;

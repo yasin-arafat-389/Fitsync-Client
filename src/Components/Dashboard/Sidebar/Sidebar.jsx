@@ -80,6 +80,17 @@ const Sidebar = () => {
               </NavLink>
             )}
 
+            {role === "admin" && (
+              <NavLink to="/add-forum/admin">
+                <div className="flex p-3 font-bold">
+                  <ListItemPrefix>
+                    <MdForum fontSize={"20"} />
+                  </ListItemPrefix>
+                  Add New Forum
+                </div>
+              </NavLink>
+            )}
+
             {/* Trainer routes */}
             {role === "trainer" && (
               <NavLink to="/manage-slots">
@@ -104,7 +115,7 @@ const Sidebar = () => {
             )}
 
             {role === "trainer" && (
-              <NavLink to="/add-forum">
+              <NavLink to="/add-forum/trainer">
                 <div className="flex p-3 font-bold">
                   <ListItemPrefix>
                     <MdForum fontSize={"20"} />

@@ -12,9 +12,12 @@ import BeATrainer from "../Pages/BeATrainer/BeATrainer";
 import PrivateRoute from "./PrivateRoute";
 import TrainerDetails from "../Pages/TrainerDetails/TrainerDetails";
 import Pricing from "../Pages/Pricing/Pricing";
-import Classes from "../Pages/Classes/Classes";
 import AddNewClass from "../TrainerPages/AddNewClass/AddNewClass";
 import TrainerRoute from "./TrainerRoute";
+import Classes from "../Pages/Classes/Classes";
+import ClassDetails from "../Pages/ClassDetails/ClassDetails";
+import Forum from "../Pages/Forum/Forum";
+import AddNewForum from "../TrainerPages/AddNewForum/AddNewForum";
 
 const router = createBrowserRouter([
   {
@@ -63,8 +66,12 @@ const router = createBrowserRouter([
         element: <Classes />,
       },
       {
+        path: "/class/details/:id",
+        element: <ClassDetails />,
+      },
+      {
         path: "/community",
-        element: <div>Community</div>,
+        element: <Forum />,
       },
       {
         path: "/profile",
@@ -112,6 +119,10 @@ const router = createBrowserRouter([
         path: "/balance",
         element: <div>This is Balance</div>,
       },
+      {
+        path: "/add-forum/admin",
+        element: <AddNewForum />,
+      },
 
       // Trainer routes
       {
@@ -123,8 +134,8 @@ const router = createBrowserRouter([
         element: <div>This is manage members</div>,
       },
       {
-        path: "/add-forum",
-        element: <div>This is add forum</div>,
+        path: "/add-forum/trainer",
+        element: <AddNewForum />,
       },
       {
         path: "/add-class",
