@@ -14,10 +14,12 @@ import { MdDashboard } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
+import useRole from "../../Hooks/useRole";
 
 const ProfileMenu = () => {
   let { user, logOut } = useAuth();
   let navigate = useNavigate();
+  let [role] = useRole();
 
   let handleLogOut = () => {
     logOut()
@@ -31,7 +33,15 @@ const ProfileMenu = () => {
   };
 
   let handleGoToDashboard = () => {
-    navigate("/dashboard");
+    if (role === "admin") {
+      navigate("/all-subscribers");
+    }
+    if (role === "trainer") {
+      navigate("/manage-slots");
+    }
+    if (role === "member") {
+      navigate("/activity-log");
+    }
   };
 
   let handleGoToProfile = () => {

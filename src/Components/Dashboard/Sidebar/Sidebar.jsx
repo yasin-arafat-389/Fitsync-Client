@@ -1,7 +1,6 @@
 import { List, ListItemPrefix } from "@material-tailwind/react";
 import { NavLink } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
-import { MdDashboard } from "react-icons/md";
 import { RiUserStarFill } from "react-icons/ri";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { GiMuscleUp } from "react-icons/gi";
@@ -26,15 +25,6 @@ const Sidebar = () => {
             <img src="https://i.ibb.co/q7L0zZ5/fit-Sync-prev-ui.png" alt="" />
           </div>
           <List>
-            <NavLink to="/dashboard">
-              <div className="flex p-3 font-bold">
-                <ListItemPrefix>
-                  <MdDashboard fontSize={"20"} />
-                </ListItemPrefix>
-                Dashboard
-              </div>
-            </NavLink>
-
             {/* Admin Routes */}
             {role === "admin" && (
               <NavLink to="/all-subscribers">

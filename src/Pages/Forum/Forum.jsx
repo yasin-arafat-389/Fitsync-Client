@@ -7,6 +7,7 @@ import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoad
 import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Forum = () => {
   let axios = useAxios();
@@ -57,7 +58,9 @@ const Forum = () => {
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center justify-between mt-4">
-                  <Button className=" dark:text-violet-400">Read more</Button>
+                  <Link to={`/forum/details/${item._id}`}>
+                    <Button className=" dark:text-violet-400">Read more</Button>
+                  </Link>
                   <div className="flex gap-7">
                     <div className="flex justify-center items-center gap-2">
                       <BiUpvote fontSize={"25"} />

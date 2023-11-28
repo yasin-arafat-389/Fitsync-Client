@@ -18,6 +18,7 @@ import Classes from "../Pages/Classes/Classes";
 import ClassDetails from "../Pages/ClassDetails/ClassDetails";
 import Forum from "../Pages/Forum/Forum";
 import AddNewForum from "../TrainerPages/AddNewForum/AddNewForum";
+import ForumDetails from "../Pages/ForumDetails/ForumDetails";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
         element: <Forum />,
       },
       {
+        path: "/forum/details/:id",
+        element: <ForumDetails />,
+      },
+      {
         path: "/profile",
         element: <div>This is Profile</div>,
       },
@@ -97,11 +102,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <DashboardLayout />,
     children: [
-      {
-        path: "/dashboard",
-        element: <div>This is dash home</div>,
-      },
-
       // Admin Routes
       {
         path: "/all-subscribers",

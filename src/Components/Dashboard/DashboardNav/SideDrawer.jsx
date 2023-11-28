@@ -9,7 +9,6 @@ import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
-import { MdDashboard } from "react-icons/md";
 import { RiUserStarFill } from "react-icons/ri";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { GiMuscleUp } from "react-icons/gi";
@@ -43,15 +42,6 @@ const SideDrawer = () => {
               </Typography>
             </div>
             <List>
-              <NavLink to="/dashboard" onClick={closeDrawer}>
-                <div className="flex p-3 font-bold">
-                  <ListItemPrefix>
-                    <MdDashboard fontSize={"20"} />
-                  </ListItemPrefix>
-                  Dashboard
-                </div>
-              </NavLink>
-
               {/* Admin Routes */}
               {role === "admin" && (
                 <NavLink to="/all-subscribers" onClick={closeDrawer}>
