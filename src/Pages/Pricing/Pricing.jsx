@@ -4,20 +4,23 @@ import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 import { Navigate, useNavigate } from "react-router-dom";
 import "./Pricing.css";
-import { Chip } from "@material-tailwind/react";
+import { Chip, Dialog, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import { ImSpinner9 } from "react-icons/im";
 import useRole from "../../Hooks/useRole";
+import Payment from "../../Components/Payment/Payment";
 
 const Pricing = () => {
   let { user } = useAuth();
   let axios = useAxios();
   let navigate = useNavigate();
   let [role] = useRole();
-  let [wait1, setWait1] = useState(false);
-  let [wait2, setWait2] = useState(false);
-  let [wait3, setWait3] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+
+  let name = user?.displayName;
 
   let dataFromLS = JSON.parse(localStorage.getItem(user?.email));
 
@@ -29,35 +32,48 @@ const Pricing = () => {
     slot = dataFromLS[1];
   }
 
-  let saveToDB1 = (packageName, price) => {
-    setWait1(true);
-    let storeToDB = { trainer, slot, packageName, price, email: user?.email };
+  let handleOpen = () => {
+    setOpen(!open);
+  };
+  let handleOpen2 = () => {
+    setOpen2(!open2);
+  };
+  let handleOpen3 = () => {
+    setOpen3(!open3);
+  };
+
+  let saveToDB1 = () => {
+    let pkg = "Silver";
+    let price = "200";
+    let storeToDB = { trainer, slot, pkg, price, name, email: user?.email };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");
-      setWait1(false);
-      navigate("/trainer");
+
+      navigate("/activity-log");
       localStorage.removeItem(user?.email);
     });
   };
 
-  let saveToDB2 = (packageName, price) => {
-    setWait2(true);
-    let storeToDB = { trainer, slot, packageName, price, email: user?.email };
+  let saveToDB2 = () => {
+    let pkg = "Gold";
+    let price = "800";
+    let storeToDB = { trainer, slot, pkg, price, name, email: user?.email };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");
-      setWait2(false);
-      navigate("/trainer");
+
+      navigate("/activity-log");
       localStorage.removeItem(user?.email);
     });
   };
 
-  let saveToDB3 = (packageName, price) => {
-    setWait3(true);
-    let storeToDB = { trainer, slot, packageName, price, email: user?.email };
+  let saveToDB3 = () => {
+    let pkg = "Diamond";
+    let price = "400";
+    let storeToDB = { trainer, slot, pkg, price, name, email: user?.email };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");
-      setWait3(false);
-      navigate("/trainer");
+
+      navigate("/activity-log");
       localStorage.removeItem(user?.email);
     });
   };
@@ -213,18 +229,38 @@ const Pricing = () => {
                 <div className="flex justify-center mt-8 ">
                   <button
                     className=" px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl"
-                    onClick={() => saveToDB1("Silver", "200")}
+                    onClick={handleOpen}
                   >
-                    {wait1 ? (
-                      <div className="flex items-center justify-center gap-4">
-                        <ImSpinner9 className="animate-spin text-[20px]" />
-                        Joining
-                      </div>
-                    ) : (
-                      "Join Now"
-                    )}
+                    Join Now
                   </button>
                 </div>
+                <Dialog open={open} handler={handleOpen}>
+                  <div className="flex justify-center items-center my-5">
+                    <Typography variant="h5" color="blue-gray">
+                      Please pay by card (Visa, Mastercard etc..)
+                    </Typography>
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center gap-2">
+                    <h1 className="text-[18px] font-bold text-gray-700">
+                      Package Name:{" "}
+                      <span className="text-blue-500">Silver</span>
+                    </h1>
+                    <h1 className="text-[18px] font-bold text-gray-700">
+                      Price: <span className="text-blue-500">$200</span>
+                    </h1>
+                    <h1 className="text-[18px] font-bold text-gray-700">
+                      Slot: <span className="text-blue-500">{slot}</span>
+                    </h1>
+                    <h1 className="text-[18px] font-bold text-gray-700">
+                      Trainer: <span className="text-blue-500">{trainer}</span>
+                    </h1>
+                  </div>
+
+                  <div className="p-5 w-full">
+                    <Payment func={saveToDB1} ho={handleOpen} />
+                  </div>
+                </Dialog>
               </div>
             </div>
 
@@ -327,19 +363,38 @@ const Pricing = () => {
                 </p>
                 <div className="flex justify-center mt-8">
                   <button
-                    className="px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl"
-                    onClick={() => saveToDB2("Gold", "800")}
+                    className=" px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl"
+                    onClick={handleOpen2}
                   >
-                    {wait2 ? (
-                      <div className="flex items-center justify-center gap-4">
-                        <ImSpinner9 className="animate-spin text-[20px]" />
-                        Joining
-                      </div>
-                    ) : (
-                      "Join Now"
-                    )}
+                    Join Now
                   </button>
                 </div>
+                <Dialog open={open2} handler={handleOpen2}>
+                  <div className="flex justify-center items-center my-5">
+                    <Typography variant="h5" color="blue-gray">
+                      Please pay by card (Visa, Mastercard etc..)
+                    </Typography>
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center gap-2">
+                    <h1 className="text-[18px] font-bold text-gray-700">
+                      Package Name: <span className="text-blue-500">Gold</span>
+                    </h1>
+                    <h1 className="text-[18px] font-bold text-gray-700">
+                      Price: <span className="text-blue-500">$800</span>
+                    </h1>
+                    <h1 className="text-[18px] font-bold text-gray-700">
+                      Slot: <span className="text-blue-500">{slot}</span>
+                    </h1>
+                    <h1 className="text-[18px] font-bold text-gray-700">
+                      Trainer: <span className="text-blue-500">{trainer}</span>
+                    </h1>
+                  </div>
+
+                  <div className="p-5 w-full">
+                    <Payment func={saveToDB2} ho={handleOpen2} />
+                  </div>
+                </Dialog>
               </div>
             </div>
 
@@ -424,17 +479,38 @@ const Pricing = () => {
                 <div className="flex justify-center mt-8 ">
                   <button
                     className=" px-4 py-2 border-blue-400 border-4 hover:bg-violet-100 rounded-xl"
-                    onClick={() => saveToDB3("Diamond", "400")}
+                    onClick={handleOpen3}
                   >
-                    {wait3 ? (
-                      <div className="flex items-center justify-center gap-4">
-                        <ImSpinner9 className="animate-spin text-[20px]" />
-                        Joining
-                      </div>
-                    ) : (
-                      "Join Now"
-                    )}
+                    Join Now
                   </button>
+                  <Dialog open={open3} handler={handleOpen3}>
+                    <div className="flex justify-center items-center my-5">
+                      <Typography variant="h5" color="blue-gray">
+                        Please pay by card (Visa, Mastercard etc..)
+                      </Typography>
+                    </div>
+
+                    <div className="flex flex-col justify-center items-center gap-2">
+                      <h1 className="text-[18px] font-bold text-gray-700">
+                        Package Name:{" "}
+                        <span className="text-blue-500">Diamond</span>
+                      </h1>
+                      <h1 className="text-[18px] font-bold text-gray-700">
+                        Price: <span className="text-blue-500">$400</span>
+                      </h1>
+                      <h1 className="text-[18px] font-bold text-gray-700">
+                        Slot: <span className="text-blue-500">{slot}</span>
+                      </h1>
+                      <h1 className="text-[18px] font-bold text-gray-700">
+                        Trainer:{" "}
+                        <span className="text-blue-500">{trainer}</span>
+                      </h1>
+                    </div>
+
+                    <div className="p-5 w-full">
+                      <Payment func={saveToDB3} ho={handleOpen3} />
+                    </div>
+                  </Dialog>
                 </div>
               </div>
             </div>

@@ -25,6 +25,7 @@ import AllTrainers from "../Pages/AdminPages/AllTrainers/AllTrainers";
 import AppliedTrainer from "../Pages/AdminPages/AppliedTrainer/AppliedTrainer";
 import Profile from "../Pages/Profile/Profile";
 import Balance from "../Pages/AdminPages/Balance/Balance";
+import ManageSlots from "../TrainerPages/ManageSlots/ManageSlots";
 
 const router = createBrowserRouter([
   {
@@ -153,7 +154,11 @@ const router = createBrowserRouter([
       // Trainer routes
       {
         path: "/manage-slots",
-        element: <div>This is manage slots</div>,
+        element: (
+          <TrainerRoute>
+            <ManageSlots />
+          </TrainerRoute>
+        ),
       },
       {
         path: "/manage-members",
