@@ -45,6 +45,11 @@ const BeATrainer = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    if (e.target.type === "number" && parseFloat(value) < 0) {
+      return;
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,

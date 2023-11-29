@@ -41,7 +41,7 @@ const TrainerDetails = () => {
           <div className="space-y-4 xl:space-y-6">
             <img
               className="mx-auto object-cover rounded-full h-36 w-36"
-              src={trainer.image}
+              src={trainer.image || "https://i.ibb.co/HN9NtYY/user.png"}
               alt="author avatar"
             />
             <div className="space-y-2">

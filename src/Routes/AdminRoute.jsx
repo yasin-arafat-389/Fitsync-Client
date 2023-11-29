@@ -2,13 +2,14 @@
 import useAuth from "../Hooks/useAuth";
 import { Navigate } from "react-router-dom";
 import useRole from "../Hooks/useRole";
+import DashboardLoader from "../Utilities/DashboardLoader/DashboardLoader";
 
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const [role, isLoading] = useRole();
 
   if (loading || isLoading) {
-    return <div>Loading</div>;
+    return <DashboardLoader />;
   }
 
   if (user && role === "admin") {

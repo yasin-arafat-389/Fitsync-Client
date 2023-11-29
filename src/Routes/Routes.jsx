@@ -19,6 +19,12 @@ import ClassDetails from "../Pages/ClassDetails/ClassDetails";
 import Forum from "../Pages/Forum/Forum";
 import AddNewForum from "../TrainerPages/AddNewForum/AddNewForum";
 import ForumDetails from "../Pages/ForumDetails/ForumDetails";
+import AdminRoute from "./AdminRoute";
+import AllSubscribers from "../Pages/AdminPages/AllSubscribers/AllSubscribers";
+import AllTrainers from "../Pages/AdminPages/AllTrainers/AllTrainers";
+import AppliedTrainer from "../Pages/AdminPages/AppliedTrainer/AppliedTrainer";
+import Profile from "../Pages/Profile/Profile";
+import Balance from "../Pages/AdminPages/Balance/Balance";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +86,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <div>This is Profile</div>,
+        element: <Profile />,
       },
       {
         path: "/blog/details/:id",
@@ -105,23 +111,43 @@ const router = createBrowserRouter([
       // Admin Routes
       {
         path: "/all-subscribers",
-        element: <div>This is All sub</div>,
+        element: (
+          <AdminRoute>
+            <AllSubscribers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/all-trainers",
-        element: <div>This is All trainers</div>,
+        element: (
+          <AdminRoute>
+            <AllTrainers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/applied-trainers",
-        element: <div>This is applied trainers</div>,
+        element: (
+          <AdminRoute>
+            <AppliedTrainer />
+          </AdminRoute>
+        ),
       },
       {
         path: "/balance",
-        element: <div>This is Balance</div>,
+        element: (
+          <AdminRoute>
+            <Balance />
+          </AdminRoute>
+        ),
       },
       {
         path: "/add-forum/admin",
-        element: <AddNewForum />,
+        element: (
+          <AdminRoute>
+            <AddNewForum />
+          </AdminRoute>
+        ),
       },
 
       // Trainer routes

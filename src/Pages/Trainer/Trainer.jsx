@@ -67,7 +67,7 @@ const Trainer = () => {
                 >
                   <div className="mb-2 h-24 w-24 overflow-hidden rounded-full bg-gray-200 shadow-lg md:mb-4 md:h-32 md:w-32">
                     <img
-                      src={item.image}
+                      src={item.image || "https://i.ibb.co/HN9NtYY/user.png"}
                       loading="lazy"
                       alt="Photo by Radu Florin"
                       className="h-full w-full object-cover object-center"

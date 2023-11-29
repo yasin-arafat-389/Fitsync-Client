@@ -1,6 +1,5 @@
 import { Button } from "@material-tailwind/react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
-import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
 import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoader";
@@ -61,7 +60,7 @@ const Forum = () => {
                   <Link to={`/forum/details/${item._id}`}>
                     <Button className=" dark:text-violet-400">Read more</Button>
                   </Link>
-                  <div className="flex gap-7">
+                  {/* <div className="flex gap-7">
                     <div className="flex justify-center items-center gap-2">
                       <BiUpvote fontSize={"25"} />
                       <span className="text-[20px] font-bold">5</span>
@@ -71,7 +70,7 @@ const Forum = () => {
                       <BiDownvote fontSize={"25"} />
                       <span className="text-[20px] font-bold">5</span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
