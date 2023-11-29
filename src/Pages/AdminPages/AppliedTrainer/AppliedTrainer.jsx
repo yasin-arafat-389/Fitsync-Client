@@ -34,6 +34,7 @@ const AppliedTrainer = () => {
       await axios.post("/update-trainer-status/accept", {
         trainerId: id,
         status: "accepted",
+        salary: "due",
         email: email,
         role: "trainer",
       });

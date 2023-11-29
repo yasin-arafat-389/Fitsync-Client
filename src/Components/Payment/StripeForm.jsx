@@ -18,11 +18,9 @@ const StripeForm = ({ func, ho }) => {
 
   useEffect(() => {
     if (totalPrice > 0) {
-      console.log(totalPrice);
       axios
         .post("/create-payment-intent", { price: totalPrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -54,7 +52,6 @@ const StripeForm = ({ func, ho }) => {
       toast.error(error.message);
     } else {
       toast.success("Payment successfull");
-      console.log(paymentMethod);
       func();
     }
   };
@@ -82,7 +79,7 @@ const StripeForm = ({ func, ho }) => {
           <Button
             className="mt-5 bg-green-400"
             type="submit"
-            disabled={!clientSecret ? true : false}
+            disabled={!clientSecret || wait1 ? true : false}
           >
             {wait1 ? (
               <div className="flex items-center justify-center gap-4">
