@@ -32,10 +32,7 @@ const ManageSlots = () => {
     setDetails(item);
   };
 
-  console.log();
-
   const rejectMember = (item) => {
-    console.log(item);
     Swal.fire({
       title: `Are you sure you want to reject ${item?.name}?`,
       text: "You won't be able to revert this!",
