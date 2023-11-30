@@ -20,12 +20,16 @@ import img18 from "../../Assets/18.jpg";
 
 import AOS from "aos";
 import { Helmet } from "react-helmet-async";
-AOS.init({
-  duration: 1500,
-  easing: "ease",
-});
+import { useEffect } from "react";
 
 const Gallery = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+      easing: "ease",
+    });
+  }, []);
+
   return (
     <div>
       <Helmet>
