@@ -1,8 +1,12 @@
-# React + Vite
+# About Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Project name:- FitSync
+- [Project live URL](https://fitsync-be2e6.web.app/)
 
-Currently, two official plugins are available:
+# Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User can sign up and be a member.
+- User can request to become a trainer.
+- Trainer can manage time slots, members, add classes and so on.
+- Admin can manage trainers, pay salary, add discussions to forum and so on.
+- User can see details about their activity in their dashboard.
