@@ -72,7 +72,12 @@ const AddNewForum = () => {
               />
             </div>
 
-            <Button type="submit" className="mt-6" fullWidth>
+            <Button
+              type="submit"
+              disabled={loading && true}
+              className="mt-6"
+              fullWidth
+            >
               {loading ? (
                 <div className="flex items-center justify-center gap-4">
                   <ImSpinner9 className="animate-spin text-[20px]" />

@@ -111,7 +111,7 @@ const BeATrainer = () => {
     },
   });
 
-  if (role === "trainer") {
+  if (role === "trainer" || role === "admin") {
     return <Navigate to="/" />;
   }
 

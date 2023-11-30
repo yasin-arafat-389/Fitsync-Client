@@ -1,30 +1,40 @@
-import {
-  Card,
-  Drawer,
-  List,
-  ListItemPrefix,
-  Typography,
-} from "@material-tailwind/react";
+import { Card, Drawer, List, ListItemPrefix } from "@material-tailwind/react";
 import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
 import { RiUserStarFill } from "react-icons/ri";
-import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { GiMuscleUp } from "react-icons/gi";
 import { MdEditDocument } from "react-icons/md";
 import { MdCurrencyExchange } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
-import { FaUsers } from "react-icons/fa6";
+import { FaPowerOff, FaUsers } from "react-icons/fa6";
 import { MdForum } from "react-icons/md";
 import { SiGoogleclassroom } from "react-icons/si";
 import { FaHistory } from "react-icons/fa";
 import { FaUserGear } from "react-icons/fa6";
 import { AiTwotoneLike } from "react-icons/ai";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import useAuth from "../../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const SideDrawer = () => {
   let [role] = useRole();
   const [open, setOpen] = React.useState(false);
+
+  let { logOut } = useAuth();
+  let navigate = useNavigate();
+
+  let handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate("/sign-in");
+        toast.success("Successfully Logged out!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -37,9 +47,12 @@ const SideDrawer = () => {
         <Drawer open={open} onClose={closeDrawer} className="p-4">
           <Card className="w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
             <div className="mb-2 p-4">
-              <Typography variant="h5" color="blue-gray">
-                Sidebar
-              </Typography>
+              <div>
+                <img
+                  src="https://i.ibb.co/q7L0zZ5/fit-Sync-prev-ui.png"
+                  alt=""
+                />
+              </div>
             </div>
             <List>
               {/* Admin Routes */}
@@ -169,11 +182,20 @@ const SideDrawer = () => {
               <NavLink to="/">
                 <div className="flex p-3 font-bold">
                   <ListItemPrefix>
-                    <HiOutlineGlobeAlt fontSize={"20"} />
+                    <IoMdArrowRoundBack fontSize={"20"} />
                   </ListItemPrefix>
                   Back to site
                 </div>
               </NavLink>
+
+              <button className="bg-transparent" onClick={handleLogOut}>
+                <div className="flex p-3 font-bold">
+                  <ListItemPrefix>
+                    <FaPowerOff fontSize={"20"} />
+                  </ListItemPrefix>
+                  Sign Out
+                </div>
+              </button>
             </List>
           </Card>
         </Drawer>

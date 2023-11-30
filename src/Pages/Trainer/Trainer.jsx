@@ -128,7 +128,7 @@ const Trainer = () => {
 
                     <div
                       className={`flex justify-center items-center mt-5  ${
-                        role === "trainer" && "hidden"
+                        role === "trainer" || role === "admin" ? "hidden" : ""
                       }`}
                     >
                       <Link to={`/trainer/details/${item._id}`}>
@@ -146,7 +146,7 @@ const Trainer = () => {
           {/* Be a trainer button */}
           <div
             className={`mt-16 flex justify-center items-center ${
-              data.status === "accepted" ? "hidden" : ""
+              data.status === "accepted" || role === "admin" ? "hidden" : ""
             }`}
           >
             {data.status === "requested" || data.status === "rejected" ? (

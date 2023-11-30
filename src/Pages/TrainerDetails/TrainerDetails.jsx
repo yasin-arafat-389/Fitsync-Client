@@ -21,8 +21,8 @@ const TrainerDetails = () => {
     },
   });
 
-  let saveInfo = (name, slot) => {
-    const upadatedDetails = [name, slot];
+  let saveInfo = (name, slot, email) => {
+    const upadatedDetails = [name, slot, email];
     localStorage.setItem(`${user?.email}`, JSON.stringify(upadatedDetails));
   };
 
@@ -30,7 +30,7 @@ const TrainerDetails = () => {
     return <RouteChangeLoader />;
   }
 
-  if (role === "trainer") {
+  if (role === "trainer" || role === "admin") {
     return <Navigate to="/" />;
   }
 
@@ -79,7 +79,9 @@ const TrainerDetails = () => {
                     <Link to="/pricing">
                       <Button
                         className="bg-green-500 text-[16px] flex justify-center items-center gap-3"
-                        onClick={() => saveInfo(trainer.name, item)}
+                        onClick={() =>
+                          saveInfo(trainer.name, item, trainer.email)
+                        }
                       >
                         <FaRegClock fontSize={"18"} /> {item}
                       </Button>

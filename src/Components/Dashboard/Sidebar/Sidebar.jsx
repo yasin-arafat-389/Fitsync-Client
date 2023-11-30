@@ -1,8 +1,8 @@
 import { List, ListItemPrefix } from "@material-tailwind/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
 import { RiUserStarFill } from "react-icons/ri";
-import { HiOutlineGlobeAlt } from "react-icons/hi";
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { GiMuscleUp } from "react-icons/gi";
 import { MdEditDocument } from "react-icons/md";
 import { MdCurrencyExchange } from "react-icons/md";
@@ -13,9 +13,25 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { FaHistory } from "react-icons/fa";
 import { FaUserGear } from "react-icons/fa6";
 import { AiTwotoneLike } from "react-icons/ai";
+import { FaPowerOff } from "react-icons/fa6";
+import useAuth from "../../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Sidebar = () => {
   let [role] = useRole();
+  let { logOut } = useAuth();
+  let navigate = useNavigate();
+
+  let handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate("/sign-in");
+        toast.success("Successfully Logged out!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="hidden md:hidden lg:block">
@@ -163,11 +179,20 @@ const Sidebar = () => {
             <NavLink to="/">
               <div className="flex p-3 font-bold">
                 <ListItemPrefix>
-                  <HiOutlineGlobeAlt fontSize={"20"} />
+                  <IoMdArrowRoundBack fontSize={"20"} />
                 </ListItemPrefix>
                 Back to site
               </div>
             </NavLink>
+
+            <button className="bg-transparent" onClick={handleLogOut}>
+              <div className="flex p-3 font-bold">
+                <ListItemPrefix>
+                  <FaPowerOff fontSize={"20"} />
+                </ListItemPrefix>
+                Sign Out
+              </div>
+            </button>
           </List>
         </div>
       </div>

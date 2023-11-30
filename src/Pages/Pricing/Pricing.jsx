@@ -26,10 +26,12 @@ const Pricing = () => {
 
   let trainer;
   let slot;
+  let trainerEmail;
 
   if (dataFromLS) {
     trainer = dataFromLS[0];
     slot = dataFromLS[1];
+    trainerEmail = dataFromLS[2];
   }
 
   let handleOpen = () => {
@@ -45,7 +47,16 @@ const Pricing = () => {
   let saveToDB1 = () => {
     let pkg = "Silver";
     let price = "200";
-    let storeToDB = { trainer, slot, pkg, price, name, email: user?.email };
+    let storeToDB = {
+      trainer,
+      slot,
+      pkg,
+      price,
+      name,
+      email: user?.email,
+      photo: user?.photoURL || "https://i.ibb.co/HN9NtYY/user.png",
+      trainerEmail,
+    };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");
 
@@ -57,7 +68,16 @@ const Pricing = () => {
   let saveToDB2 = () => {
     let pkg = "Gold";
     let price = "800";
-    let storeToDB = { trainer, slot, pkg, price, name, email: user?.email };
+    let storeToDB = {
+      trainer,
+      slot,
+      pkg,
+      price,
+      name,
+      email: user?.email,
+      photo: user?.photoURL || "https://i.ibb.co/HN9NtYY/user.png",
+      trainerEmail,
+    };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");
 
@@ -69,7 +89,16 @@ const Pricing = () => {
   let saveToDB3 = () => {
     let pkg = "Diamond";
     let price = "400";
-    let storeToDB = { trainer, slot, pkg, price, name, email: user?.email };
+    let storeToDB = {
+      trainer,
+      slot,
+      pkg,
+      price,
+      name,
+      email: user?.email,
+      photo: user?.photoURL || "https://i.ibb.co/HN9NtYY/user.png",
+      trainerEmail,
+    };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");
 
@@ -99,7 +128,7 @@ const Pricing = () => {
     return <Navigate to="/" />;
   }
 
-  if (role === "trainer") {
+  if (role === "trainer" || role === "admin") {
     return <Navigate to="/" />;
   }
 

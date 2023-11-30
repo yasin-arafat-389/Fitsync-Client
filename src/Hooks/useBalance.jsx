@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 const useBalance = () => {
   let axios = useAxios();
 
-  let { data: adminBalance = [] } = useQuery({
+  let { data: adminBalance = [], refetch: balanceRefetch } = useQuery({
     queryKey: ["balance"],
     queryFn: async () => {
       let res = await axios.get(`/balance`).then();
@@ -14,7 +14,7 @@ const useBalance = () => {
 
   let balance = adminBalance;
 
-  return [balance];
+  return [balance, balanceRefetch];
 };
 
 export default useBalance;

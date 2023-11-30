@@ -26,6 +26,7 @@ import AppliedTrainer from "../Pages/AdminPages/AppliedTrainer/AppliedTrainer";
 import Profile from "../Pages/Profile/Profile";
 import Balance from "../Pages/AdminPages/Balance/Balance";
 import ManageSlots from "../TrainerPages/ManageSlots/ManageSlots";
+import ManageMembers from "../TrainerPages/ManageMembers.jsx/ManageMembers";
 
 const router = createBrowserRouter([
   {
@@ -162,11 +163,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/manage-members",
-        element: <div>This is manage members</div>,
+        element: (
+          <TrainerRoute>
+            <ManageMembers />
+          </TrainerRoute>
+        ),
       },
       {
         path: "/add-forum/trainer",
-        element: <AddNewForum />,
+        element: (
+          <TrainerRoute>
+            <AddNewForum />
+          </TrainerRoute>
+        ),
       },
       {
         path: "/add-class",

@@ -8,7 +8,7 @@ import useBalance from "../../../Hooks/useBalance";
 
 const AllTrainers = () => {
   let axios = useAxios();
-  let [balance] = useBalance();
+  let [balance, balanceRefetch] = useBalance();
 
   let {
     data: trainers,
@@ -52,6 +52,7 @@ const AllTrainers = () => {
     const status = "paid";
     await axios.put(`/update-salary-status/${id}`, { status });
     refetch();
+    balanceRefetch();
     setOpenModal(!openModal);
   };
 
