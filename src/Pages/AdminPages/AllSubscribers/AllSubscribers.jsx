@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios";
 import DashboardLoader from "../../../Utilities/DashboardLoader/DashboardLoader";
+import { Helmet } from "react-helmet-async";
 
 const AllSubscribers = () => {
   let axios = useAxios();
@@ -19,6 +20,10 @@ const AllSubscribers = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | All Subscribers</title>
+      </Helmet>
+
       <table className="table-auto w-full">
         <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-300">
           <tr>

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import DashboardLoader from "../../../Utilities/DashboardLoader/DashboardLoader";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AppliedTrainer = () => {
   let axios = useAxios();
@@ -70,6 +71,9 @@ const AppliedTrainer = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Applied Trainers</title>
+      </Helmet>
       <table className="table-auto w-full">
         <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-300">
           <tr>

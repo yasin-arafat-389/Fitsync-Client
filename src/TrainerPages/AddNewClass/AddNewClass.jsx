@@ -15,6 +15,7 @@ import { useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
+import { Helmet } from "react-helmet-async";
 
 const AddNewClass = () => {
   const [data] = useTrainer();
@@ -85,6 +86,9 @@ const AddNewClass = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Add New Class</title>
+      </Helmet>
       <div color="transparent" className="ml-10">
         <form
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"

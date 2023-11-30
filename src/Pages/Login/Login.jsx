@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import { ImSpinner9 } from "react-icons/im";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -69,6 +70,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Login</title>
+      </Helmet>
       <div>
         <div className="bg-[#E1BFB8]">
           <div className="py-10">

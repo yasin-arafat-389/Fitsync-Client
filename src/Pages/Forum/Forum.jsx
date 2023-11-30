@@ -7,6 +7,7 @@ import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Forum = () => {
   let axios = useAxios();
@@ -33,6 +34,9 @@ const Forum = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Forum</title>
+      </Helmet>
       <PageTitle title="Community" />
 
       <div className="my-10">

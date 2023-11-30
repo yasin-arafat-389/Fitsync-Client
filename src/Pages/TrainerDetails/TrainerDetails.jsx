@@ -6,6 +6,7 @@ import { Button, Chip } from "@material-tailwind/react";
 import { FaRegClock } from "react-icons/fa6";
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
+import { Helmet } from "react-helmet-async";
 
 const TrainerDetails = () => {
   let singleTrainer = useParams();
@@ -36,6 +37,9 @@ const TrainerDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Trainer Details</title>
+      </Helmet>
       <div className="py-16">
         <div className="w-[60%] mx-auto px-6 py-6  text-center bg-gray-800 rounded-lg lg:mt-0 xl:px-10">
           <div className="space-y-4 xl:space-y-6">

@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
 import { ImSpinner9 } from "react-icons/im";
+import { Helmet } from "react-helmet-async";
 
 const ForumDetails = () => {
   let forumID = useParams();
@@ -86,6 +87,9 @@ const ForumDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Forum Details</title>
+      </Helmet>
       <div className="forum-blogs">
         <div className="bg-gray-300 my-10 rounded-lg w-[80%] mx-auto">
           <div className="container max-w-4xl px-10 py-6 mx-auto rounded-lg dark:bg-gray-900">

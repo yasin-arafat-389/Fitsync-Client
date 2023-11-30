@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
 import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoader";
+import { Helmet } from "react-helmet-async";
 
 const BlogDetails = () => {
   let blogID = useParams();
@@ -20,6 +21,10 @@ const BlogDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Blog Details</title>
+      </Helmet>
+
       {loading ? (
         <RouteChangeLoader />
       ) : (

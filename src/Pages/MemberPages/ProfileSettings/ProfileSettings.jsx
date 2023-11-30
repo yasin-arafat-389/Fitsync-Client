@@ -15,6 +15,7 @@ import {
 } from "@material-tailwind/react";
 import { ImSpinner9 } from "react-icons/im";
 import { imageUpload } from "../../../Utilities/ImageUpload/ImageUpload";
+import { Helmet } from "react-helmet-async";
 
 const ProfileSettings = () => {
   let { user, update } = useAuth();
@@ -76,6 +77,9 @@ const ProfileSettings = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Profile Settings</title>
+      </Helmet>
       <div className=" dark:bg-gray-700 py-12">
         <div className="max-w-sm mx-auto bg-gray-200 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
           <div className="border-b px-4 pb-6">

@@ -7,6 +7,7 @@ import { FaRegClock } from "react-icons/fa6";
 import useBookedSlots from "../../Hooks/useBookedSlots";
 import { useState } from "react";
 import NoDataFound from "../../Utilities/NoDataFound/NoDataFound";
+import { Helmet } from "react-helmet-async";
 
 const ManageSlots = () => {
   let axios = useAxios();
@@ -35,6 +36,9 @@ const ManageSlots = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Manage Slots</title>
+      </Helmet>
       <h1 className="text-[20px] font-bold">My Slots:</h1>
       <div className="flex flex-wrap mt-5 gap-5">
         {trainer.availableTime.map((item, index) => (

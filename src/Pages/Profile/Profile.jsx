@@ -2,6 +2,7 @@ import useAuth from "../../Hooks/useAuth";
 import { MdOutlineMail } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
 import useRole from "../../Hooks/useRole";
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
   let { user } = useAuth();
@@ -9,6 +10,9 @@ const Profile = () => {
 
   return (
     <div className="bg-[#E5E7EB]">
+      <Helmet>
+        <title>FitSync | Profile</title>
+      </Helmet>
       <div className=" dark:bg-gray-700 bg-gray-200 py-12">
         <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
           <div className="border-b px-4 pb-6">

@@ -13,6 +13,7 @@ import useAxios from "../../../Hooks/useAxios";
 import { MdCurrencyExchange } from "react-icons/md";
 import { FaCcVisa } from "react-icons/fa6";
 import useBalance from "../../../Hooks/useBalance";
+import { Helmet } from "react-helmet-async";
 
 const Balance = () => {
   let axios = useAxios();
@@ -56,6 +57,10 @@ const Balance = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Balance</title>
+      </Helmet>
+
       {/* Cards */}
       <div className="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row w-full gap-10 mb-2 lg:mb-4">

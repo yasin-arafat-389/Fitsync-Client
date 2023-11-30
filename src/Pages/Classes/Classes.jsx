@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
 import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoader";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   let axios = useAxios();
@@ -28,6 +29,10 @@ const Classes = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Classes</title>
+      </Helmet>
+
       <PageTitle title="Classes" />
 
       {/* Weekly activity chart */}

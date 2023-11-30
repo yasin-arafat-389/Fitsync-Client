@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const RecommendedClasses = () => {
   let axios = useAxios();
@@ -29,6 +30,10 @@ const RecommendedClasses = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Recommended Classes</title>
+      </Helmet>
+
       <h2 className="mt-4 text-2xl text-center font-bold text-blue-900 sm:text-4xl xl:text-3xl">
         We recommend you these classes
       </h2>

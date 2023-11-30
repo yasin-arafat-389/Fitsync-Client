@@ -4,6 +4,7 @@ import { ImSpinner9 } from "react-icons/im";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import useRole from "../../Hooks/useRole";
+import { Helmet } from "react-helmet-async";
 
 const AddNewForum = () => {
   let [loading, setLoading] = useState(false);
@@ -48,6 +49,9 @@ const AddNewForum = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Add New Forum</title>
+      </Helmet>
       <div>
         <div color="transparent" className="ml-10">
           <form

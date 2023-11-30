@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import useRole from "../../Hooks/useRole";
 import Payment from "../../Components/Payment/Payment";
+import { Helmet } from "react-helmet-async";
 
 const Pricing = () => {
   let { user } = useAuth();
@@ -134,6 +135,9 @@ const Pricing = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Pricing</title>
+      </Helmet>
       <div>
         <PageTitle title="Pricing" from="Trainer" link="/trainer" />
 

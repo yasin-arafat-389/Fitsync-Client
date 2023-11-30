@@ -19,6 +19,7 @@ import img17 from "../../Assets/17.jpg";
 import img18 from "../../Assets/18.jpg";
 
 import AOS from "aos";
+import { Helmet } from "react-helmet-async";
 AOS.init({
   duration: 1500,
   easing: "ease",
@@ -27,6 +28,10 @@ AOS.init({
 const Gallery = () => {
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Gallery</title>
+      </Helmet>
+
       <PageTitle title="Gallery" />
 
       <div className="w-[80%] mx-auto my-10">

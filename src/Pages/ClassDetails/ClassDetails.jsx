@@ -4,6 +4,7 @@ import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoader";
 import { Button } from "@material-tailwind/react";
+import { Helmet } from "react-helmet-async";
 
 const ClassDetails = () => {
   let classDetails = useParams();
@@ -24,6 +25,10 @@ const ClassDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Class Details</title>
+      </Helmet>
+
       <PageTitle title="Class Details" />
 
       <div className="w-[80%] mx-auto my-16 flex flex-col md:flex-col lg:flex-row gap-10">

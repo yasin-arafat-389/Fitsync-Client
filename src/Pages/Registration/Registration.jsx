@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
 import { imageUpload } from "../../Utilities/ImageUpload/ImageUpload";
 import useAxios from "../../Hooks/useAxios";
+import { Helmet } from "react-helmet-async";
 
 const Registration = () => {
   const [loading, setLoading] = useState(false);
@@ -87,6 +88,9 @@ const Registration = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Registration</title>
+      </Helmet>
       <div className="bg-[#E1BFB8]">
         <div className="py-20">
           <div className=" w-full max-w-sm mx-auto overflow-hidden rounded-lg shadow-md dark:bg-gray-800 bg-white">

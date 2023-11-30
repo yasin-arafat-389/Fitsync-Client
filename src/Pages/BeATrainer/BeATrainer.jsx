@@ -17,6 +17,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useRole from "../../Hooks/useRole";
+import { Helmet } from "react-helmet-async";
 
 const BeATrainer = () => {
   let axios = useAxios();
@@ -117,6 +118,10 @@ const BeATrainer = () => {
 
   return (
     <>
+      <Helmet>
+        <title>FitSync | Be A Trainer</title>
+      </Helmet>
+
       {data.status === "requested" ? (
         <Navigate to="/" />
       ) : (

@@ -5,6 +5,7 @@ import { Button, Dialog, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import Payment from "../../../Components/Payment/Payment";
 import useBalance from "../../../Hooks/useBalance";
+import { Helmet } from "react-helmet-async";
 
 const AllTrainers = () => {
   let axios = useAxios();
@@ -60,10 +61,12 @@ const AllTrainers = () => {
     return <DashboardLoader />;
   }
 
-  // console.log(trainers);
-
   return (
     <div>
+      <Helmet>
+        <title>FitSync | All Trainers</title>
+      </Helmet>
+
       <table className="table-auto w-full">
         <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-300">
           <tr>

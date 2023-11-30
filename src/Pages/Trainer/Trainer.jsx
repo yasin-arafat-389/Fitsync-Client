@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import RouteChangeLoader from "../../Utilities/RouteChangeLoader/RouteChangeLoader";
 import { Button } from "@material-tailwind/react";
 import useRole from "../../Hooks/useRole";
+import { Helmet } from "react-helmet-async";
 
 const Trainer = () => {
   let axios = useAxios();
@@ -54,6 +55,9 @@ const Trainer = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Trainer</title>
+      </Helmet>
       <PageTitle title="Trainer" />
 
       <div>

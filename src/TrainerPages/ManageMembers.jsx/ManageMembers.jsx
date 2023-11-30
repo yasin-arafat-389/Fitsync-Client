@@ -13,6 +13,7 @@ import {
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import NoDataFound from "../../Utilities/NoDataFound/NoDataFound";
+import { Helmet } from "react-helmet-async";
 
 const ManageMembers = () => {
   let [bookedUser] = useBookedSlots();
@@ -44,6 +45,9 @@ const ManageMembers = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Manage Members</title>
+      </Helmet>
       <h1 className="text-[20px] font-bold">Manage Members:</h1>
 
       <div>

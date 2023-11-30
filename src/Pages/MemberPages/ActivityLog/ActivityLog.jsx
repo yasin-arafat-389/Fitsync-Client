@@ -7,6 +7,7 @@ import DashboardLoader from "../../../Utilities/DashboardLoader/DashboardLoader"
 import { Button, Chip } from "@material-tailwind/react";
 import NoDataFound from "../../../Utilities/NoDataFound/NoDataFound";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const ActivityLog = () => {
   let { user } = useAuth();
@@ -48,6 +49,10 @@ const ActivityLog = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Activity Log</title>
+      </Helmet>
+
       {data.pricingData.length === 0 ? (
         <div className="mt-5">
           <NoDataFound text={`You currently have no activity`} />
