@@ -47,12 +47,13 @@ const AppliedTrainer = () => {
     }
   };
 
-  let handleReject = async (id) => {
+  let handleReject = async (id, email) => {
     setOpen(!open);
     try {
       await axios.post("/update-trainer-status/reject", {
         trainerId: id,
         status: "rejected",
+        email: email,
       });
 
       refetch();
@@ -160,7 +161,9 @@ const AppliedTrainer = () => {
                       >
                         Accept
                       </Button>
-                      <Button onClick={() => handleReject(item._id)}>
+                      <Button
+                        onClick={() => handleReject(item._id, item.email)}
+                      >
                         Reject
                       </Button>
                     </div>

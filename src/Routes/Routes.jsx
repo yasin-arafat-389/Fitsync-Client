@@ -27,6 +27,10 @@ import Profile from "../Pages/Profile/Profile";
 import Balance from "../Pages/AdminPages/Balance/Balance";
 import ManageSlots from "../TrainerPages/ManageSlots/ManageSlots";
 import ManageMembers from "../TrainerPages/ManageMembers.jsx/ManageMembers";
+import MemberRoute from "./MemberRoute";
+import ActivityLog from "../Pages/MemberPages/ActivityLog/ActivityLog";
+import ProfileSettings from "../Pages/MemberPages/ProfileSettings/ProfileSettings";
+import RecommendedClasses from "../Pages/MemberPages/RecommendedClasses/RecommendedClasses";
 
 const router = createBrowserRouter([
   {
@@ -189,15 +193,27 @@ const router = createBrowserRouter([
       // Member route
       {
         path: "/activity-log",
-        element: <div>This is activity</div>,
+        element: (
+          <MemberRoute>
+            <ActivityLog />
+          </MemberRoute>
+        ),
       },
       {
         path: "/profile-settings",
-        element: <div>This is profile settings</div>,
+        element: (
+          <MemberRoute>
+            <ProfileSettings />
+          </MemberRoute>
+        ),
       },
       {
         path: "/recommended-classes",
-        element: <div>This is reco</div>,
+        element: (
+          <MemberRoute>
+            <RecommendedClasses />
+          </MemberRoute>
+        ),
       },
     ],
   },
