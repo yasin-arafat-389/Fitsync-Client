@@ -60,11 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/trainer/details/:id",
-        element: (
-          <PrivateRoute>
-            <TrainerDetails />
-          </PrivateRoute>
-        ),
+        element: <TrainerDetails />,
       },
       {
         path: "/pricing",
