@@ -8,6 +8,8 @@ import useBookedSlots from "../../Hooks/useBookedSlots";
 import { useState } from "react";
 import NoDataFound from "../../Utilities/NoDataFound/NoDataFound";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const ManageSlots = () => {
   let axios = useAxios();
@@ -28,6 +30,27 @@ const ManageSlots = () => {
   const handleOpen = (item) => {
     setOpen(!open);
     setDetails(item);
+  };
+
+  console.log();
+
+  const rejectMember = (item) => {
+    console.log(item);
+    Swal.fire({
+      title: `Are you sure you want to reject ${item?.name}?`,
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.post("/reject-member", { email: item?.email }).then(() => {
+          toast.success("Member has been rejected!!");
+        });
+      }
+    });
   };
 
   if (isLoading) {
@@ -89,6 +112,13 @@ const ManageSlots = () => {
                         onClick={() => handleOpen(item)}
                       >
                         See Details
+                      </button>
+
+                      <button
+                        className="w-full bg-red-500 text-white rounded-full px-4 py-2 hover:bg-red-700 focus:outline-none focus:shadow-outline-blue active:bg-red-800 mt-2"
+                        onClick={() => rejectMember(item)}
+                      >
+                        Reject Member
                       </button>
                     </div>
                   </div>

@@ -52,7 +52,7 @@ const AuthContext = ({ children }) => {
       if (user) {
         const userEmail = { email: user.email };
         axios
-          .post("https://fit-sync-server.vercel.app/access-token", userEmail)
+          .post("https://fit-sync-server.vercel.app", userEmail)
           .then((res) => {
             if (res.data.token) {
               localStorage.setItem("access-token-from-fitsync", res.data.token);
