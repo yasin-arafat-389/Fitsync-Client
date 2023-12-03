@@ -7,7 +7,7 @@ import {
   MenuList,
 } from "@material-tailwind/react";
 import React from "react";
-// import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlinePoweroff } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
 import { MdDashboard } from "react-icons/md";
@@ -44,9 +44,9 @@ const ProfileMenu = () => {
     }
   };
 
-  // let handleGoToProfile = () => {
-  //   navigate("/profile");
-  // };
+  let handleGoToProfile = () => {
+    navigate("/profile");
+  };
 
   const profileMenuItems = [
     {
@@ -54,11 +54,11 @@ const ProfileMenu = () => {
       icon: <MdDashboard />,
       action: handleGoToDashboard,
     },
-    // {
-    //   label: "Profile",
-    //   icon: <AiOutlineUser fontSize={"20px"} />,
-    //   action: handleGoToProfile,
-    // },
+    {
+      label: "Profile",
+      icon: <AiOutlineUser fontSize={"20px"} />,
+      action: handleGoToProfile,
+    },
     {
       label: "Sign Out",
       icon: <AiOutlinePoweroff fontSize={"20px"} />,

@@ -91,11 +91,6 @@ function NavList() {
           Community
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/profile" className="p-3 font-bold">
-          User Profile
-        </NavLink>
-      </li>
     </ul>
   );
 }
