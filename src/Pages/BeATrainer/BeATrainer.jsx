@@ -122,7 +122,7 @@ const BeATrainer = () => {
         <title>FitSync | Be A Trainer</title>
       </Helmet>
 
-      {data.status === "requested" ? (
+      {data.status === "requested" || data.status === "rejected" ? (
         <Navigate to="/" />
       ) : (
         <div>

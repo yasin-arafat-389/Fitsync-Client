@@ -14,6 +14,7 @@ import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import NoDataFound from "../../Utilities/NoDataFound/NoDataFound";
 import { Helmet } from "react-helmet-async";
+import { ImSpinner9 } from "react-icons/im";
 
 const ManageMembers = () => {
   let [bookedUser] = useBookedSlots();
@@ -23,6 +24,7 @@ const ManageMembers = () => {
   let [details, setDetails] = useState();
   let [subject, setSubject] = useState("");
   let [message, setMessage] = useState("");
+  let [loading, setLoading] = useState(false);
 
   const handleOpen = (item) => {
     setOpen(!open);
@@ -31,14 +33,20 @@ const ManageMembers = () => {
 
   let handleSendInstruction = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     await axios
       .post("/send-instruction", {
         to: details?.email,
         subject,
         message,
+        receiverName: details?.name,
+        trainer: details?.trainer,
+        slot: details?.slot,
       })
       .then(() => {
         toast.success("Instruction sent successfully 👍");
+        setLoading(false);
         setOpen(false);
       });
   };
@@ -120,8 +128,20 @@ const ManageMembers = () => {
                     />
                   </CardBody>
                   <CardFooter className="pt-0">
-                    <Button type="submit" variant="gradient" fullWidth>
-                      Send
+                    <Button
+                      type="submit"
+                      variant="gradient"
+                      fullWidth
+                      disabled={!subject || !message || loading ? true : false}
+                    >
+                      {loading ? (
+                        <div className="flex items-center justify-center gap-4">
+                          <ImSpinner9 className="animate-spin text-[20px]" />
+                          Sending
+                        </div>
+                      ) : (
+                        "Send"
+                      )}
                     </Button>
                   </CardFooter>
                 </Card>
