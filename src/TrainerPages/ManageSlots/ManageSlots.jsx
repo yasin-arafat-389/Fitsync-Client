@@ -2,13 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 import DashboardLoader from "../../Utilities/DashboardLoader/DashboardLoader";
-import { Avatar, Button, Dialog } from "@material-tailwind/react";
+import { Avatar, Button, Dialog, DialogHeader } from "@material-tailwind/react";
 import { FaRegClock } from "react-icons/fa6";
+import { ImSpinner9 } from "react-icons/im";
 import useBookedSlots from "../../Hooks/useBookedSlots";
 import { useState } from "react";
 import NoDataFound from "../../Utilities/NoDataFound/NoDataFound";
 import { Helmet } from "react-helmet-async";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 
 const ManageSlots = () => {
@@ -25,28 +25,27 @@ const ManageSlots = () => {
   });
 
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [loading, setLoading] = useState(false);
   let [details, setDetails] = useState();
+  let [email, setEmail] = useState();
 
   const handleOpen = (item) => {
     setOpen(!open);
     setDetails(item);
   };
 
-  const rejectMember = (item) => {
-    Swal.fire({
-      title: `Are you sure you want to reject ${item?.name}?`,
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios.post("/reject-member", { email: item?.email }).then(() => {
-          toast.success("Member has been rejected!!");
-        });
-      }
+  const handleOpen2 = (item) => {
+    setOpen2(!open2);
+    setEmail(item?.email);
+  };
+
+  const handleReject = async () => {
+    setLoading(true);
+    await axios.post("/reject-member", { email: email }).then(() => {
+      setLoading(false);
+      handleOpen2(null);
+      toast.success("Member has been rejected!!");
     });
   };
 
@@ -113,7 +112,7 @@ const ManageSlots = () => {
 
                       <button
                         className="w-full bg-red-500 text-white rounded-full px-4 py-2 hover:bg-red-700 focus:outline-none focus:shadow-outline-blue active:bg-red-800 mt-2"
-                        onClick={() => rejectMember(item)}
+                        onClick={() => handleOpen2(item)}
                       >
                         Reject Member
                       </button>
@@ -169,6 +168,34 @@ const ManageSlots = () => {
                 </div>
               </Dialog>
             </div>
+
+            <Dialog size="xs" open={open2} handler={handleOpen2}>
+              <DialogHeader>
+                Are you sure you want to reject this member?
+              </DialogHeader>
+              <div className="my-5 flex justify-center items-center gap-3">
+                <Button
+                  variant="text"
+                  color="red"
+                  onClick={() => handleOpen2(null)}
+                  className="mr-1"
+                >
+                  <span>Cancel</span>
+                </Button>
+                <Button variant="gradient" color="green" onClick={handleReject}>
+                  <span>
+                    {loading ? (
+                      <div className="flex gap-4">
+                        <ImSpinner9 className="animate-spin text-[20px]" />
+                        Rejecting
+                      </div>
+                    ) : (
+                      "Reject"
+                    )}
+                  </span>
+                </Button>
+              </div>
+            </Dialog>
           </>
         )}
       </div>

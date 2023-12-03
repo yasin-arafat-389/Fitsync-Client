@@ -1,6 +1,7 @@
 import { Button, Dialog } from "@material-tailwind/react";
 import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
+import { ImSpinner9 } from "react-icons/im";
 import DashboardLoader from "../../../Utilities/DashboardLoader/DashboardLoader";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -23,6 +24,7 @@ const AppliedTrainer = () => {
 
   // Modal
   const [open, setOpen] = useState(false);
+  let [loading, setLoading] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -47,16 +49,20 @@ const AppliedTrainer = () => {
   };
 
   let handleReject = async (id, email) => {
-    setOpen(!open);
+    setLoading(true);
     try {
-      await axios.post("/update-trainer-status/reject", {
-        trainerId: id,
-        status: "rejected",
-        email: email,
-      });
-
-      refetch();
-      toast.success("Request rejected successfully");
+      await axios
+        .post("/update-trainer-status/reject", {
+          trainerId: id,
+          status: "rejected",
+          email: email,
+        })
+        .then(() => {
+          setLoading(false);
+          setOpen(!open);
+          refetch();
+          toast.success("Request rejected successfully");
+        });
     } catch (error) {
       console.error("Error accepting trainer:", error);
       toast.error("Failed to accept trainer");
@@ -166,7 +172,14 @@ const AppliedTrainer = () => {
                       <Button
                         onClick={() => handleReject(item._id, item.email)}
                       >
-                        Reject
+                        {loading ? (
+                          <div className="flex items-center justify-center gap-4">
+                            <ImSpinner9 className="animate-spin text-[20px]" />
+                            Rejecting
+                          </div>
+                        ) : (
+                          "Reject"
+                        )}
                       </Button>
                     </div>
                   </div>
