@@ -7,6 +7,7 @@ import { FaRegClock } from "react-icons/fa6";
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const TrainerDetails = () => {
   let singleTrainer = useParams();
@@ -22,12 +23,20 @@ const TrainerDetails = () => {
     },
   });
 
+  let { data: alreadyBooked, isLoading: isAlreadyBookedLoading } = useQuery({
+    queryKey: ["alreadyBooked", user?.email],
+    queryFn: async () => {
+      let res = await axios.get(`/prevent-booking?email=${user?.email}`).then();
+      return res.data;
+    },
+  });
+
   let saveInfo = (name, slot, email) => {
     const upadatedDetails = [name, slot, email];
     localStorage.setItem(`${user?.email}`, JSON.stringify(upadatedDetails));
   };
 
-  if (isLoading) {
+  if (isLoading || isAlreadyBookedLoading) {
     return <RouteChangeLoader />;
   }
 
@@ -80,16 +89,31 @@ const TrainerDetails = () => {
               <div className="flex flex-wrap justify-center items-center gap-5">
                 {trainer.availableTime.map((item, index) => (
                   <div key={index}>
-                    <Link to="/pricing">
+                    {alreadyBooked.slots.includes(item) ? (
                       <Button
                         className="bg-green-500 text-[16px] flex justify-center items-center gap-3"
                         onClick={() =>
-                          saveInfo(trainer.name, item, trainer.email)
+                          Swal.fire({
+                            title: `Please select another slot.`,
+                            text: `You are already registered under a ${item} slot`,
+                            icon: "warning",
+                          })
                         }
                       >
                         <FaRegClock fontSize={"18"} /> {item}
                       </Button>
-                    </Link>
+                    ) : (
+                      <Link to="/pricing">
+                        <Button
+                          className="bg-green-500 text-[16px] flex justify-center items-center gap-3"
+                          onClick={() =>
+                            saveInfo(trainer.name, item, trainer.email)
+                          }
+                        >
+                          <FaRegClock fontSize={"18"} /> {item}
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 ))}
               </div>
