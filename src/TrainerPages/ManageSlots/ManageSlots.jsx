@@ -2,13 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 import DashboardLoader from "../../Utilities/DashboardLoader/DashboardLoader";
-import { Avatar, Button, Dialog } from "@material-tailwind/react";
+import {
+  Avatar,
+  Button,
+  Dialog,
+  Option,
+  Select,
+  Textarea,
+} from "@material-tailwind/react";
 import { FaRegClock } from "react-icons/fa6";
 
 import useBookedSlots from "../../Hooks/useBookedSlots";
 import { useState } from "react";
 import NoDataFound from "../../Utilities/NoDataFound/NoDataFound";
 import { Helmet } from "react-helmet-async";
+import { ImSpinner9 } from "react-icons/im";
+import toast from "react-hot-toast";
 
 const ManageSlots = () => {
   let axios = useAxios();
@@ -31,6 +40,35 @@ const ManageSlots = () => {
     setDetails(item);
   };
 
+  // Handle cancel a slot
+
+  let [slotDetails, setSlotDetails] = useState([]);
+  let [openEmailDialogue, setOpenEmailDialogue] = useState(false);
+  let [loading, setLoading] = useState(false);
+  let [message, setMessage] = useState("");
+
+  let handleSelectedSlot = (slot, trainerName) => {
+    setSlotDetails({ slot, trainerName });
+    setOpenEmailDialogue(!openEmailDialogue);
+  };
+
+  let handleCancelSlot = async () => {
+    setLoading(true);
+
+    await axios
+      .post("/cancel-slot", {
+        message: message,
+        slot: slotDetails.slot,
+        trainer: slotDetails.trainerName,
+      })
+      .then((res) => {
+        console.log(res);
+        setLoading(false);
+        toast.success("Message has been sent!!");
+        setOpenEmailDialogue(!openEmailDialogue);
+      });
+  };
+
   if (isLoading) {
     return <DashboardLoader />;
   }
@@ -41,14 +79,32 @@ const ManageSlots = () => {
         <title>FitSync | Manage Slots</title>
       </Helmet>
       <h1 className="text-[20px] font-bold">My Slots:</h1>
-      <div className="flex flex-wrap mt-5 gap-5">
-        {trainer.availableTime.map((item, index) => (
-          <div key={index}>
-            <Button className="bg-green-500 text-[16px] cursor-default flex justify-center items-center gap-3">
-              <FaRegClock fontSize={"18"} /> {item}
-            </Button>
-          </div>
-        ))}
+      <div className="flex flex-wrap mt-5 gap-3 justify-between">
+        <div className="flex gap-3">
+          {trainer.availableTime.map((item, index) => (
+            <div key={index}>
+              <div className="bg-green-500 text-[16px] p-2 text-white rounded-lg font-bold flex justify-center items-center gap-3">
+                <FaRegClock fontSize={"18"} /> {item}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div>
+          <Select
+            label={<label style={{ fontWeight: "bold" }}>Cancel a slot</label>}
+            error
+          >
+            {trainer.availableTime.map((item, index) => (
+              <Option
+                key={index}
+                onClick={() => handleSelectedSlot(item, trainer?.name)}
+              >
+                {item}
+              </Option>
+            ))}
+          </Select>
+        </div>
       </div>
 
       <div>
@@ -143,6 +199,49 @@ const ManageSlots = () => {
                 </div>
               </Dialog>
             </div>
+
+            {/* Send email modal */}
+            <Dialog
+              open={openEmailDialogue}
+              size="sm"
+              handler={handleSelectedSlot}
+            >
+              <div className="p-7">
+                <h1 className="text-[20px] font-bold mb-6">
+                  Write the reason you want to <br />
+                  cancel{" "}
+                  <span className="italic text-white bg-green-300 p-1 rounded-lg">
+                    {`${slotDetails.slot}`}
+                  </span>{" "}
+                  slot
+                </h1>
+
+                <Textarea
+                  label="Message"
+                  size="lg"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+
+                <Button
+                  type="submit"
+                  variant="gradient"
+                  className="mt-3"
+                  disabled={loading || !message ? true : false}
+                  fullWidth
+                  onClick={handleCancelSlot}
+                >
+                  {loading ? (
+                    <div className="flex items-center justify-center gap-4">
+                      <ImSpinner9 className="animate-spin text-[20px]" />
+                      Sending
+                    </div>
+                  ) : (
+                    "Send"
+                  )}
+                </Button>
+              </div>
+            </Dialog>
           </>
         )}
       </div>
