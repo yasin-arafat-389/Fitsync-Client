@@ -7,7 +7,7 @@ import { GiMuscleUp } from "react-icons/gi";
 import { MdEditDocument } from "react-icons/md";
 import { MdCurrencyExchange } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
-import { FaUsers } from "react-icons/fa6";
+import { FaMoneyCheckDollar, FaUsers } from "react-icons/fa6";
 import { MdForum } from "react-icons/md";
 import { SiGoogleclassroom } from "react-icons/si";
 import { FaHistory } from "react-icons/fa";
@@ -138,6 +138,17 @@ const Sidebar = () => {
                     <SiGoogleclassroom fontSize={"20"} />
                   </ListItemPrefix>
                   Add New Class
+                </div>
+              </NavLink>
+            )}
+
+            {role === "trainer" && (
+              <NavLink to="/request-salary">
+                <div className="flex p-3 font-bold">
+                  <ListItemPrefix>
+                    <FaMoneyCheckDollar fontSize={"20"} />
+                  </ListItemPrefix>
+                  Request Salary
                 </div>
               </NavLink>
             )}

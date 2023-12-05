@@ -4,6 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
 import { RiUserStarFill } from "react-icons/ri";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { GiMuscleUp } from "react-icons/gi";
 import { MdEditDocument } from "react-icons/md";
 import { MdCurrencyExchange } from "react-icons/md";
@@ -141,6 +142,17 @@ const SideDrawer = () => {
                       <SiGoogleclassroom fontSize={"20"} />
                     </ListItemPrefix>
                     Add New Class
+                  </div>
+                </NavLink>
+              )}
+
+              {role === "trainer" && (
+                <NavLink to="/request-salary" onClick={closeDrawer}>
+                  <div className="flex p-3 font-bold">
+                    <ListItemPrefix>
+                      <FaMoneyCheckDollar fontSize={"20"} />
+                    </ListItemPrefix>
+                    Request Salary
                   </div>
                 </NavLink>
               )}

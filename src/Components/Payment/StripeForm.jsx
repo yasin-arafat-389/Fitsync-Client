@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAxios from "../../Hooks/useAxios";
 import { ImSpinner9 } from "react-icons/im";
+import { FaInfoCircle } from "react-icons/fa";
 
 const StripeForm = ({ func, ho }) => {
   let stripe = useStripe();
@@ -60,6 +61,7 @@ const StripeForm = ({ func, ho }) => {
     <div className="w-[100%]">
       <form onSubmit={handleSubmit}>
         <CardElement
+          className="stripe-input-fields"
           options={{
             style: {
               base: {
@@ -93,6 +95,37 @@ const StripeForm = ({ func, ho }) => {
           <Button className="mt-5 bg-red-400" onClick={ho}>
             Cancel
           </Button>
+        </div>
+
+        <div className="mt-7">
+          <div className="info-card-number flex gap-3 items-center">
+            <FaInfoCircle className="text-blue-600" />
+            <span className="font-bold">
+              Card number:{" "}
+              <span className="text-blue-400">4242 4242 4242 4242</span>
+            </span>
+          </div>
+
+          <div className="info-mm-yy flex gap-3 items-center">
+            <FaInfoCircle className="text-blue-600" />
+            <span className="font-bold">
+              MM / YY: <span className="text-blue-400">04 / 35</span>
+            </span>
+          </div>
+
+          <div className="info-mm-yy flex gap-3 items-center">
+            <FaInfoCircle className="text-blue-600" />
+            <span className="font-bold">
+              ZIP: <span className="text-blue-400">242</span>
+            </span>
+          </div>
+
+          <div className="info-mm-yy flex gap-3 items-center">
+            <FaInfoCircle className="text-blue-600" />
+            <span className="font-bold">
+              CVC: <span className="text-blue-400">42424</span>
+            </span>
+          </div>
         </div>
       </form>
     </div>
