@@ -147,12 +147,12 @@ const SideDrawer = () => {
               )}
 
               {role === "trainer" && (
-                <NavLink to="/request-salary" onClick={closeDrawer}>
+                <NavLink to="/salary-history" onClick={closeDrawer}>
                   <div className="flex p-3 font-bold">
                     <ListItemPrefix>
                       <FaMoneyCheckDollar fontSize={"20"} />
                     </ListItemPrefix>
-                    Request Salary
+                    Salary History
                   </div>
                 </NavLink>
               )}

@@ -143,12 +143,12 @@ const Sidebar = () => {
             )}
 
             {role === "trainer" && (
-              <NavLink to="/request-salary">
+              <NavLink to="/salary-history">
                 <div className="flex p-3 font-bold">
                   <ListItemPrefix>
                     <FaMoneyCheckDollar fontSize={"20"} />
                   </ListItemPrefix>
-                  Request Salary
+                  Salary History
                 </div>
               </NavLink>
             )}

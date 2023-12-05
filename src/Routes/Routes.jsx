@@ -31,7 +31,7 @@ import MemberRoute from "./MemberRoute";
 import ActivityLog from "../Pages/MemberPages/ActivityLog/ActivityLog";
 import ProfileSettings from "../Pages/MemberPages/ProfileSettings/ProfileSettings";
 import RecommendedClasses from "../Pages/MemberPages/RecommendedClasses/RecommendedClasses";
-import RequestSalary from "../TrainerPages/RequestSalary/RequestSalary";
+import SalaryHistory from "../TrainerPages/SalaryHistory/SalaryHistory";
 
 const router = createBrowserRouter([
   {
@@ -191,10 +191,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/request-salary",
+        path: "/salary-history",
         element: (
           <TrainerRoute>
-            <RequestSalary />
+            <SalaryHistory />
           </TrainerRoute>
         ),
       },
