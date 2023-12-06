@@ -92,7 +92,11 @@ const StripeForm = ({ func, ho }) => {
               "Pay Now"
             )}
           </Button>
-          <Button className="mt-5 bg-red-400" onClick={ho}>
+          <Button
+            className="mt-5 bg-red-400"
+            onClick={ho}
+            disabled={wait1 ? true : false}
+          >
             Cancel
           </Button>
         </div>
@@ -116,14 +120,14 @@ const StripeForm = ({ func, ho }) => {
           <div className="info-mm-yy flex gap-3 items-center">
             <FaInfoCircle className="text-blue-600" />
             <span className="font-bold">
-              ZIP: <span className="text-blue-400">242</span>
+              CVC: <span className="text-blue-400">424</span>
             </span>
           </div>
 
           <div className="info-mm-yy flex gap-3 items-center">
             <FaInfoCircle className="text-blue-600" />
             <span className="font-bold">
-              CVC: <span className="text-blue-400">42424</span>
+              ZIP: <span className="text-blue-400">24242</span>
             </span>
           </div>
         </div>

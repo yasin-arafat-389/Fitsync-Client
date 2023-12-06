@@ -1,13 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import DashboardLoader from "../../../Utilities/DashboardLoader/DashboardLoader";
 import useAxios from "../../../Hooks/useAxios";
-import { Avatar, Chip, Dialog } from "@material-tailwind/react";
+import { Avatar, Chip, Dialog, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 
 import { Helmet } from "react-helmet-async";
+import Payment from "../../../Components/Payment/Payment";
+import useBalance from "../../../Hooks/useBalance";
 
 const AllTrainers = () => {
   let axios = useAxios();
+  let [balance, balanceRefetch] = useBalance();
+
+  const currentDate = new Date(Date.now());
+  const monthName = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+    currentDate
+  );
+
+  const currentYear = currentDate.getFullYear();
+
+  let monthAndYearOfSalary = `${monthName}, ${currentYear}`;
 
   let { data: trainers, isLoading } = useQuery({
     queryKey: ["allTrainers"],
@@ -19,10 +31,52 @@ const AllTrainers = () => {
 
   let [details, setDetails] = useState();
   const [open, setOpen] = useState(false);
-
   const handleOpen = (item) => {
     setDetails(item);
     setOpen(!open);
+  };
+
+  // Handle Payment
+  let [salaryDetails, setSalaryDetails] = useState();
+
+  const [openSalaryModal, setOpenSalaryModal] = useState(false);
+  const handleSalaryModalOpen = (item) => {
+    setSalaryDetails(item);
+    setOpenSalaryModal(!openSalaryModal);
+  };
+
+  // Prevent paying twice
+  let { data: salaryData = [], refetch } = useQuery({
+    queryKey: ["salaryInfo"],
+    queryFn: async () => {
+      let res = await axios.get(`/salary-data`).then();
+      return res.data;
+    },
+  });
+
+  let alreadyPaid = false;
+  salaryData.map((item) => {
+    if (
+      item.month === monthAndYearOfSalary &&
+      item.email === salaryDetails?.email
+    ) {
+      alreadyPaid = true;
+    }
+  });
+
+  let handlePayment = async () => {
+    await axios
+      .post("/pay-salary", {
+        trainer: salaryDetails.name,
+        month: monthAndYearOfSalary,
+        status: "paid",
+        email: salaryDetails.email,
+      })
+      .then(() => {
+        setOpenSalaryModal(!openSalaryModal);
+        balanceRefetch();
+        refetch();
+      });
   };
 
   if (isLoading) {
@@ -59,6 +113,15 @@ const AllTrainers = () => {
                   onClick={() => handleOpen(item)}
                 >
                   See Details
+                </button>
+              </div>
+
+              <div className="py-0 pb-4 px-4">
+                <button
+                  className="w-full bg-green-500 text-white rounded-full px-4 py-2 hover:bg-green-700 focus:outline-none focus:shadow-outline-blue active:bg-green-800"
+                  onClick={() => handleSalaryModalOpen(item)}
+                >
+                  Pay Salary
                 </button>
               </div>
             </div>
@@ -133,6 +196,53 @@ const AllTrainers = () => {
               </div>
             </div>
           </div>
+        </div>
+      </Dialog>
+
+      <Dialog open={openSalaryModal} handler={handleSalaryModalOpen}>
+        {alreadyPaid ? (
+          ""
+        ) : (
+          <>
+            <div className="flex justify-center items-center my-5">
+              <Typography variant="h5" color="blue-gray">
+                Please pay by card (Visa, Mastercard etc..)
+              </Typography>
+            </div>
+
+            <div className="flex flex-col justify-center items-center gap-2">
+              <h1 className="text-[18px] font-bold text-gray-700">
+                Current balance:{" "}
+                <span className="text-blue-500">${balance?.totalBalance}</span>
+              </h1>
+              <h1 className="text-[18px] font-bold text-gray-700">
+                Trainer Name:{" "}
+                <span className="text-blue-500">{salaryDetails?.name}</span>
+              </h1>
+              <h1 className="text-[18px] font-bold text-gray-700">
+                Salary: <span className="text-blue-500">$20</span>
+              </h1>
+              <h1 className="text-[18px] font-bold text-gray-700">
+                Month: <span className="text-blue-500">{monthName}</span>
+              </h1>
+              <h1 className="text-[18px] font-bold text-gray-700">
+                Balance after payment:{" "}
+                <span className="text-blue-500">
+                  ${balance?.totalBalance - 20}
+                </span>
+              </h1>
+            </div>
+          </>
+        )}
+        <div className="p-5 w-full">
+          {alreadyPaid ? (
+            <div className="bg-green-500 text-white text-[15px] font-bold p-1 text-center rounded-lg">
+              Already Paid {salaryDetails?.name} his salary for{" "}
+              {monthAndYearOfSalary}
+            </div>
+          ) : (
+            <Payment func={handlePayment} ho={handleSalaryModalOpen} />
+          )}
         </div>
       </Dialog>
     </div>

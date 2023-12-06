@@ -41,7 +41,6 @@ const AppliedTrainer = () => {
         .post("/update-trainer-status/accept", {
           trainerId: id,
           status: "accepted",
-          salary: "due",
           email: email,
           role: "trainer",
           name: name,
@@ -84,8 +83,6 @@ const AppliedTrainer = () => {
   if (isLoading) {
     return <DashboardLoader />;
   }
-
-  // console.log(details);
 
   return (
     <div>

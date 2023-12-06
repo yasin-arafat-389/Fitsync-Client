@@ -5,19 +5,20 @@ import DashboardLoader from "../../Utilities/DashboardLoader/DashboardLoader";
 import NoDataFound from "../../Utilities/NoDataFound/NoDataFound";
 
 const SalaryHistory = () => {
-  // Handle request salary
   let { user } = useAuth();
   let axios = useAxios();
 
   let { data = [], isLoading } = useQuery({
-    queryKey: ["salaryDataSingle", user?.displayName],
+    queryKey: ["salaryInfoTrainer", user?.email],
     queryFn: async () => {
       let res = await axios
-        .get(`/salary/single?name=${user?.displayName}`)
+        .get(`/salary-data/trainer?email=${user?.email}`)
         .then();
       return res.data;
     },
   });
+
+  console.log(data);
 
   if (isLoading) {
     return <DashboardLoader />;
@@ -48,11 +49,7 @@ const SalaryHistory = () => {
                             Month
                           </div>
                         </th>
-                        <th className="p-2 whitespace-nowrap">
-                          <div className="font-semibold text-center capitalize text-[18px] p-1">
-                            Year
-                          </div>
-                        </th>
+
                         <th className="p-2 whitespace-nowrap">
                           <div className="font-semibold text-center capitalize text-[18px] p-1">
                             Status
@@ -66,17 +63,11 @@ const SalaryHistory = () => {
                           <td className="p-2 whitespace-nowrap">
                             <div className="flex items-center justify-center">
                               <div className="font-medium text-gray-800 text-[18px]">
-                                {item?.previousMonthName}
+                                {item?.month}
                               </div>
                             </div>
                           </td>
-                          <td className="p-2 whitespace-nowrap">
-                            <div className="flex items-center justify-center">
-                              <div className="font-medium text-gray-800 text-[18px]">
-                                {item?.fullYear}
-                              </div>
-                            </div>
-                          </td>
+
                           <td className="p-2 whitespace-nowrap">
                             <div className="flex items-center justify-center">
                               <div
