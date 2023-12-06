@@ -21,28 +21,6 @@ const ActivityLog = () => {
     },
   });
 
-  const activities = [
-    "Cardio",
-    "Weight Lifting",
-    "Yoga",
-    "Running",
-    "Swimming",
-    "Cycling",
-    "Pilates",
-    "HIIT Workout",
-    "Zumba",
-    "CrossFit",
-    "Martial Arts",
-    "Dance",
-    "Hiking",
-    "Rowing",
-    "Kickboxing",
-  ];
-  const getRandomActivity = () => {
-    const randomIndex = Math.floor(Math.random() * activities.length);
-    return activities[randomIndex];
-  };
-
   if (isLoading) {
     return <DashboardLoader />;
   }
@@ -119,7 +97,7 @@ const ActivityLog = () => {
           </div>
 
           {/* Tables */}
-          <div className="w-full max-w-2xl mb-10 ml-6 bg-gray-200 shadow-lg rounded-sm border border-gray-200">
+          <div className="w-full ml-0 md:ml-6 lg:ml-6 overflow-x-scroll md:overflow-x-scroll lg:overflow-hidden mb-10 bg-gray-200 shadow-lg rounded-sm border border-gray-200">
             <header className="px-5 py-4 border-b border-gray-100">
               <h2 className="font-semibold text-gray-800 text-xl">
                 Activity Schedule
@@ -131,17 +109,17 @@ const ActivityLog = () => {
                   <thead className="text-xs font-semibold uppercase text-white bg-blue-500">
                     <tr>
                       <th className="p-2 whitespace-nowrap">
-                        <div className="font-semibold text-left capitalize text-[18px] p-1">
+                        <div className="font-semibold text-center capitalize text-[18px] p-1">
                           Trainer Name
                         </div>
                       </th>
                       <th className="p-2 whitespace-nowrap">
-                        <div className="font-semibold text-left capitalize text-[18px] p-1">
+                        <div className="font-semibold text-center capitalize text-[18px] p-1">
                           Slot
                         </div>
                       </th>
                       <th className="p-2 whitespace-nowrap">
-                        <div className="font-semibold text-left capitalize text-[18px] p-1">
+                        <div className="font-semibold text-center capitalize text-[18px] p-1">
                           Activity
                         </div>
                       </th>
@@ -151,7 +129,7 @@ const ActivityLog = () => {
                     {data.pricingData.map((item, index) => (
                       <tr key={index}>
                         <td className="p-2 whitespace-nowrap">
-                          <div className="flex items-center">
+                          <div className="flex items-center justify-center gap-2">
                             <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
                               <img
                                 className="rounded-full"
@@ -166,7 +144,7 @@ const ActivityLog = () => {
                           </div>
                         </td>
                         <td className="p-2 whitespace-nowrap">
-                          <div className="text-left flex">
+                          <div className="text-center flex justify-center items-center">
                             <Chip
                               color="green"
                               value={item.slot}
@@ -175,8 +153,8 @@ const ActivityLog = () => {
                           </div>
                         </td>
                         <td className="p-2 whitespace-nowrap">
-                          <div className="text-left font-bold text-[16px] text-purple-500">
-                            {getRandomActivity()}
+                          <div className="text-center font-bold text-[16px] text-purple-500">
+                            {item.activity}
                           </div>
                         </td>
                       </tr>

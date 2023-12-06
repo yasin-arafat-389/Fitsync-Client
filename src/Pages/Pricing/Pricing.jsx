@@ -57,6 +57,7 @@ const Pricing = () => {
       email: user?.email,
       photo: user?.photoURL || "https://i.ibb.co/HN9NtYY/user.png",
       trainerEmail,
+      activity: "Your trainer will assign an activity soon",
     };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");
@@ -78,6 +79,7 @@ const Pricing = () => {
       email: user?.email,
       photo: user?.photoURL || "https://i.ibb.co/HN9NtYY/user.png",
       trainerEmail,
+      activity: "Your trainer will assign an activity soon",
     };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");
@@ -99,6 +101,7 @@ const Pricing = () => {
       email: user?.email,
       photo: user?.photoURL || "https://i.ibb.co/HN9NtYY/user.png",
       trainerEmail,
+      activity: "Your trainer will assign an activity soon",
     };
     axios.post("/package/subscribed", storeToDB).then(() => {
       toast.success("Successfully Joined");

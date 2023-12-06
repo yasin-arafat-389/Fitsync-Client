@@ -69,6 +69,15 @@ const ManageSlots = () => {
       });
   };
 
+  let slot = [];
+  bookedUser.map((item) => {
+    if (!slot.includes(item.slot)) {
+      slot.push(item.slot);
+    }
+  });
+
+  console.log(slot);
+
   if (isLoading) {
     return <DashboardLoader />;
   }
@@ -90,21 +99,29 @@ const ManageSlots = () => {
           ))}
         </div>
 
-        <div>
-          <Select
-            label={<label style={{ fontWeight: "bold" }}>Cancel a slot</label>}
-            error
-          >
-            {trainer.availableTime.map((item, index) => (
-              <Option
-                key={index}
-                onClick={() => handleSelectedSlot(item, trainer?.name)}
+        {bookedUser.length === 0 ? (
+          ""
+        ) : (
+          <>
+            <div>
+              <Select
+                label={
+                  <label style={{ fontWeight: "bold" }}>Cancel a slot</label>
+                }
+                error
               >
-                {item}
-              </Option>
-            ))}
-          </Select>
-        </div>
+                {slot.map((item, index) => (
+                  <Option
+                    key={index}
+                    onClick={() => handleSelectedSlot(item, trainer?.name)}
+                  >
+                    {item}
+                  </Option>
+                ))}
+              </Select>
+            </div>
+          </>
+        )}
       </div>
 
       <div>

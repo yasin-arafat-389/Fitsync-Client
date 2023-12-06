@@ -3,6 +3,7 @@ import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import DashboardLoader from "../../Utilities/DashboardLoader/DashboardLoader";
 import NoDataFound from "../../Utilities/NoDataFound/NoDataFound";
+import { Helmet } from "react-helmet-async";
 
 const SalaryHistory = () => {
   let { user } = useAuth();
@@ -26,6 +27,10 @@ const SalaryHistory = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>FitSync | Salary History</title>
+      </Helmet>
+
       {data.length === 0 ? (
         <div className="mt-5">
           <NoDataFound text="No salary history to show" />

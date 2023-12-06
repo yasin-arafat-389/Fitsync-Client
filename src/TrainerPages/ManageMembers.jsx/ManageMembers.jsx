@@ -51,6 +51,31 @@ const ManageMembers = () => {
       });
   };
 
+  // handle assign activity
+  let [activityDetails, setActivityDetails] = useState();
+  let [activity, setActivity] = useState("");
+  let [loadingAssign, setLoadingAssign] = useState(false);
+  const [openActivity, setOpenActivity] = useState(false);
+  const handleOpenActivity = (item) => {
+    setOpenActivity(!openActivity);
+    setActivityDetails(item);
+  };
+
+  let handleAssignActivity = async () => {
+    setLoadingAssign(true);
+    await axios
+      .post("/assign-activity", {
+        email: activityDetails.email,
+        slot: activityDetails.slot,
+        activity: activity,
+      })
+      .then(() => {
+        toast.success("Activity assigned successfully!!");
+        setOpenActivity(!openActivity);
+        setLoadingAssign(false);
+      });
+  };
+
   return (
     <div>
       <Helmet>
@@ -91,6 +116,13 @@ const ManageMembers = () => {
                       className="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold tracking-wide"
                     >
                       Send Instruction
+                    </button>
+
+                    <button
+                      className="bg-green-600 px-8 py-2 mt-3 rounded-3xl text-gray-100 font-semibold tracking-wide"
+                      onClick={() => handleOpenActivity(item)}
+                    >
+                      Assign Activity
                     </button>
                   </div>
                 </div>
@@ -146,6 +178,54 @@ const ManageMembers = () => {
                   </CardFooter>
                 </Card>
               </form>
+            </Dialog>
+
+            {/* Activity Assigning modal */}
+            <Dialog
+              size="sm"
+              open={openActivity}
+              handler={handleOpenActivity}
+              className="bg-transparent shadow-none"
+            >
+              <Card className="mx-auto w-full max-w-[24rem]">
+                <CardBody className="flex flex-col gap-4">
+                  <Typography variant="h5" color="blue-gray" className="mb-6">
+                    Assign{" "}
+                    <span className="text-amber-800 italic">
+                      {activityDetails?.name}
+                    </span>{" "}
+                    an activity for this week.{" "}
+                    <Typography className="text-gray-600 italic font-bold">
+                      (example: Cardio, Weight lifting, Free hand etc...)
+                    </Typography>
+                  </Typography>
+
+                  <Input
+                    label="Activity"
+                    size="lg"
+                    value={activity}
+                    onChange={(e) => setActivity(e.target.value)}
+                  />
+                </CardBody>
+                <CardFooter className="pt-0">
+                  <Button
+                    type="submit"
+                    variant="gradient"
+                    fullWidth
+                    disabled={!activity || loadingAssign ? true : false}
+                    onClick={handleAssignActivity}
+                  >
+                    {loadingAssign ? (
+                      <div className="flex items-center justify-center gap-4">
+                        <ImSpinner9 className="animate-spin text-[20px]" />
+                        Assigning
+                      </div>
+                    ) : (
+                      "Assign"
+                    )}
+                  </Button>
+                </CardFooter>
+              </Card>
             </Dialog>
           </>
         )}
