@@ -91,7 +91,7 @@ const Registration = () => {
       <Helmet>
         <title>FitSync | Registration</title>
       </Helmet>
-      <div className="bg-[#E1BFB8]">
+      <div className=" bg-teal-100">
         <div className="py-20">
           <div className=" w-full max-w-sm mx-auto overflow-hidden rounded-lg shadow-md dark:bg-gray-800 bg-white">
             <div className="px-6 py-4">

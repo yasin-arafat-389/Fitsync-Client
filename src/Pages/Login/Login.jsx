@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import loginAnimation from "../../Utilities/LottieAnimations/login-animation.json";
+import loginAnimation from "../../Utilities/LottieAnimations/loginAnimation.json";
 import { Button, Input } from "@material-tailwind/react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
@@ -74,7 +74,7 @@ const Login = () => {
         <title>FitSync | Login</title>
       </Helmet>
       <div>
-        <div className="bg-[#E1BFB8]">
+        <div className="bg-[#3a9efd]">
           <div className="py-10">
             <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
               <div className="hidden bg-gray-100 lg:flex lg:w-1/2">
