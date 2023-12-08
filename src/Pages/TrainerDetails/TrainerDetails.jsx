@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import { FaInfoCircle } from "react-icons/fa";
 
 const TrainerDetails = () => {
   let singleTrainer = useParams();
@@ -72,7 +73,7 @@ const TrainerDetails = () => {
                 {trainer.availableDays.map((item, index) => (
                   <div key={index}>
                     <Chip
-                      color="green"
+                      color="blue"
                       value={item}
                       className="text-[16px] capitalize"
                     />
@@ -88,34 +89,42 @@ const TrainerDetails = () => {
 
               <div className="flex flex-wrap justify-center items-center gap-5">
                 {trainer.availableTime.map((item, index) => (
-                  <div key={index}>
-                    {alreadyBooked.slots.includes(item) ? (
-                      <Button
-                        className="bg-green-500 text-[16px] flex justify-center items-center gap-3"
-                        onClick={() =>
-                          Swal.fire({
-                            title: `Please select another slot.`,
-                            text: `You are already registered under a ${item} slot`,
-                            icon: "warning",
-                          })
-                        }
-                      >
-                        <FaRegClock fontSize={"18"} /> {item}
-                      </Button>
-                    ) : (
-                      <Link to="/pricing">
+                  <>
+                    <div key={index}>
+                      {alreadyBooked.slots.includes(item) ? (
                         <Button
                           className="bg-green-500 text-[16px] flex justify-center items-center gap-3"
                           onClick={() =>
-                            saveInfo(trainer.name, item, trainer.email)
+                            Swal.fire({
+                              title: `Please select another slot.`,
+                              text: `You already have a session at ${item} slot`,
+                              icon: "warning",
+                            })
                           }
                         >
                           <FaRegClock fontSize={"18"} /> {item}
                         </Button>
-                      </Link>
-                    )}
-                  </div>
+                      ) : (
+                        <Link to="/pricing">
+                          <Button
+                            className="bg-green-500 text-[16px] flex justify-center items-center gap-3"
+                            onClick={() =>
+                              saveInfo(trainer.name, item, trainer.email)
+                            }
+                          >
+                            <FaRegClock fontSize={"18"} /> {item}
+                          </Button>
+                        </Link>
+                      )}
+                    </div>
+                  </>
                 ))}
+              </div>
+              <div className="flex justify-center items-center mt-3 gap-2">
+                <FaInfoCircle color="yellow" fontSize={"20"} />
+                <h1 className="text-white">
+                  Click on the time slot to book that slot
+                </h1>
               </div>
             </div>
           </div>
