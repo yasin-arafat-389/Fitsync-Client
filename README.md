@@ -1,6 +1,7 @@
 # About Project
 
 - Project name:- FitSync
+- Type:- Fitness tracking web application
 - [Project live URL](https://fitsync-be2e6.web.app/)
 
 # Features
