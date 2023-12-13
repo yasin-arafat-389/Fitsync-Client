@@ -129,7 +129,12 @@ const AllTrainers = () => {
         ))}
       </div>
 
-      <Dialog open={open} handler={handleOpen} className="bg-transparent">
+      <Dialog
+        open={open}
+        size="xl"
+        handler={handleOpen}
+        className="bg-transparent"
+      >
         <div className="">
           <div className="w-full max-w-full py-8 flex flex-row items-center justify-center bg-[#FFFBFB] rounded-lg ">
             <div className="flex flex-col md:flex-row w-3/4 md:w-5/6 space-x-0 md:space-x-8">
