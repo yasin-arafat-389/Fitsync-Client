@@ -18,18 +18,9 @@ import img16 from "../../Assets/16.jpg";
 import img17 from "../../Assets/17.jpg";
 import img18 from "../../Assets/18.jpg";
 
-import AOS from "aos";
 import { Helmet } from "react-helmet-async";
-import { useEffect } from "react";
 
 const Gallery = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1500,
-      easing: "ease",
-    });
-  }, []);
-
   return (
     <div>
       <Helmet>
@@ -82,27 +73,27 @@ const Gallery = () => {
           </div>
 
           {/* Loading image animate */}
-          <div data-aos="fade-up">
+          <div>
             <img className="h-auto max-w-full rounded-lg" src={img13} alt="" />
           </div>
 
-          <div data-aos="fade-down">
+          <div>
             <img className="h-auto max-w-full rounded-lg" src={img14} alt="" />
           </div>
 
-          <div data-aos="fade-up">
+          <div>
             <img className="h-auto max-w-full rounded-lg" src={img15} alt="" />
           </div>
 
-          <div data-aos="fade-down">
+          <div>
             <img className="h-auto max-w-full rounded-lg" src={img16} alt="" />
           </div>
 
-          <div data-aos="fade-up">
+          <div>
             <img className="h-auto max-w-full rounded-lg" src={img17} alt="" />
           </div>
 
-          <div data-aos="fade-down">
+          <div>
             <img className="h-auto max-w-full rounded-lg" src={img18} alt="" />
           </div>
         </div>
