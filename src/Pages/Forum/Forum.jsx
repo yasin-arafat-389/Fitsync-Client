@@ -64,17 +64,6 @@ const Forum = () => {
                   <Link to={`/forum/details/${item._id}`}>
                     <Button className=" dark:text-violet-400">Read more</Button>
                   </Link>
-                  {/* <div className="flex gap-7">
-                    <div className="flex justify-center items-center gap-2">
-                      <BiUpvote fontSize={"25"} />
-                      <span className="text-[20px] font-bold">5</span>
-                    </div>
-
-                    <div className="flex justify-center items-center gap-2">
-                      <BiDownvote fontSize={"25"} />
-                      <span className="text-[20px] font-bold">5</span>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
