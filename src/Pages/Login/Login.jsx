@@ -37,7 +37,7 @@ const Login = () => {
       .then(() => {
         let userEmail = { email: formData.email };
         axios
-          .post("http://localhost:5000/access-token", userEmail)
+          .post("https://fit-sync-server.vercel.app/access-token", userEmail)
           .then((res) => {
             if (res.data.token) {
               localStorage.setItem("access-token-from-fitsync", res.data.token);
@@ -62,12 +62,12 @@ const Login = () => {
           email: result.user?.email,
           role: "member",
         };
-        axios.post("http://localhost:5000/users", userInfo).then();
+        axios.post("https://fit-sync-server.vercel.app/users", userInfo).then();
 
         let userEmail = { email: result.user?.email };
 
         axios
-          .post("http://localhost:5000/access-token", userEmail)
+          .post("https://fit-sync-server.vercel.app/access-token", userEmail)
           .then((res) => {
             if (res.data.token) {
               localStorage.setItem("access-token-from-fitsync", res.data.token);
