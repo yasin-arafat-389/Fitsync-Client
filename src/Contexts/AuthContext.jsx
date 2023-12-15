@@ -50,12 +50,14 @@ const AuthContext = ({ children }) => {
       setLoading(false);
 
       if (user) {
-        const userEmail = { email: user.email };
-        axios.post("http://localhost:5000", userEmail).then((res) => {
-          if (res.data.token) {
-            localStorage.setItem("access-token-from-fitsync", res.data.token);
-          }
-        });
+        const userEmail = { email: user?.email };
+        axios
+          .post("http://localhost:5000/access-token", userEmail)
+          .then((res) => {
+            if (res.data.token) {
+              localStorage.setItem("access-token-from-fitsync", res.data.token);
+            }
+          });
       } else {
         localStorage.removeItem("access-token-from-fitsync");
       }

@@ -76,8 +76,6 @@ const ManageSlots = () => {
     }
   });
 
-  console.log(slot);
-
   if (isLoading) {
     return <DashboardLoader />;
   }

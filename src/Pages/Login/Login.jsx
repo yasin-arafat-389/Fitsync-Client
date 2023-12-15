@@ -6,15 +6,14 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import useAxios from "../../Hooks/useAxios";
 import { ImSpinner9 } from "react-icons/im";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
   let location = useLocation();
   let { login, googleLogin, user } = useAuth();
-  let axios = useAxios();
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -36,8 +35,16 @@ const Login = () => {
 
     login(formData.email, formData.password)
       .then(() => {
-        navigate(location?.state ? location?.state : "/");
-        toast.success("Successfully Logged In!");
+        let userEmail = { email: formData.email };
+        axios
+          .post("http://localhost:5000/access-token", userEmail)
+          .then((res) => {
+            if (res.data.token) {
+              localStorage.setItem("access-token-from-fitsync", res.data.token);
+              navigate(location?.state ? location?.state : "/");
+              toast.success("Successfully Logged In!");
+            }
+          });
       })
       .catch((error) => {
         setLoading(false);
@@ -55,9 +62,19 @@ const Login = () => {
           email: result.user?.email,
           role: "member",
         };
-        axios.post("/users", userInfo).then();
-        navigate(location?.state ? location?.state : "/");
-        toast.success("Successfully Logged In!");
+        axios.post("http://localhost:5000/users", userInfo).then();
+
+        let userEmail = { email: result.user?.email };
+
+        axios
+          .post("http://localhost:5000/access-token", userEmail)
+          .then((res) => {
+            if (res.data.token) {
+              localStorage.setItem("access-token-from-fitsync", res.data.token);
+              navigate(location?.state ? location?.state : "/");
+              toast.success("Successfully Logged In!");
+            }
+          });
       })
       .catch((error) => {
         console.log(error);

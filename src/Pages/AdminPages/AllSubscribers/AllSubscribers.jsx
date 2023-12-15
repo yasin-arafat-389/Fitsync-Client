@@ -25,41 +25,6 @@ const AllSubscribers = () => {
         <title>FitSync | All Subscribers</title>
       </Helmet>
 
-      {/* <table className="table-auto w-full">
-        <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-300">
-          <tr>
-            <th className="p-2 whitespace-nowrap">
-              <div className="font-semibold text-left text-black text-[17px]">
-                Name
-              </div>
-            </th>
-            <th className="p-2 whitespace-nowrap">
-              <div className="font-semibold text-left text-black text-[17px]">
-                Email
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="text-sm divide-y divide-gray-100">
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td className="p-2 whitespace-nowrap">
-                <div className="flex items-center">
-                  <div className=" text-gray-800 font-bold text-[16px]">
-                    {item.name}
-                  </div>
-                </div>
-              </td>
-              <td className="p-2 whitespace-nowrap">
-                <div className="text-left font-bold text-[16px]">
-                  {item.email}
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-
       <Card className="h-full w-full ">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
