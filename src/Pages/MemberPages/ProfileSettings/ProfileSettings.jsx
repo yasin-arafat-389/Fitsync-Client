@@ -41,7 +41,7 @@ const ProfileSettings = () => {
     let imgData = null;
 
     if (selectedFile) {
-      let imageData = await imageUpload(image);
+      let imageData = await imageUpload(image, setLoading, setOpen1);
       imgData = imageData;
     }
 
