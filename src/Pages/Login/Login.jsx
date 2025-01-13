@@ -91,7 +91,7 @@ const Login = () => {
         <title>FitSync | Login</title>
       </Helmet>
       <div>
-        <div className="bg-[#3a9efd]">
+        <div className="bg-[#AAB99A]">
           <div className="py-10">
             <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
               <div className="hidden bg-gray-100 lg:flex lg:w-1/2">
@@ -131,6 +131,45 @@ const Login = () => {
                   </div>
 
                   <span className="w-1/5 h-[1px] bg-gray-500 lg:w-1/4"></span>
+                </div>
+
+                <div className="flex gap-3 justify-around mt-4">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFormData({
+                        email: "admin@gmail.com",
+                        password: "Arafat*",
+                      })
+                    }
+                    className="px-4 py-2 text-xs font-semibold text-white bg-gray-700 rounded-lg hover:bg-gray-800"
+                  >
+                    Admin Credentials
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFormData({
+                        email: "arafat@gmail.com",
+                        password: "Arafat*",
+                      })
+                    }
+                    className="px-4 py-2 text-xs font-semibold text-white bg-gray-700 rounded-lg hover:bg-gray-800"
+                  >
+                    Member Credentials
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFormData({
+                        email: "aliison@gmail.com",
+                        password: "Arafat*",
+                      })
+                    }
+                    className="px-4 py-2 text-xs font-semibold text-white bg-gray-700 rounded-lg hover:bg-gray-800"
+                  >
+                    Trainer Credentials
+                  </button>
                 </div>
 
                 <form onSubmit={handleLogin}>
