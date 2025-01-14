@@ -85,7 +85,7 @@ const SideDrawer = () => {
                     <ListItemPrefix>
                       <MdEditDocument fontSize={"20"} />
                     </ListItemPrefix>
-                    Applied Trainers
+                    Trainer Requests
                   </div>
                 </NavLink>
               )}

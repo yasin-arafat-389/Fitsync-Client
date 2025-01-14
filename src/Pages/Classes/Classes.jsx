@@ -1,10 +1,4 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Typography,
-} from "@material-tailwind/react";
+import { useState } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
@@ -23,9 +17,37 @@ const Classes = () => {
     },
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
   if (isLoading) {
     return <RouteChangeLoader />;
   }
+
+  // Calculate the start and end index for the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  // Handle next and previous page actions
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div>
@@ -35,219 +57,82 @@ const Classes = () => {
 
       <PageTitle title="Classes" />
 
-      {/* Weekly activity chart */}
-      <div className="my-10">
-        <div className="w-full max-w-2xl p-6 mx-auto bg-gray-200 rounded-2xl shadow-xl flex flex-col ">
-          <div className="flex justify-center items-center pb-4">
-            <span className="capitalize text-xl font-semibold text-gray-600">
-              Weekly Physical Activity Chart
-            </span>
-          </div>
-          <div className="flex justify-between font-medium uppercase text-xs pt-4 pb-2 border-t">
-            <div className="px-3 border rounded-sm w-14 h-5 flex items-center justify-center border-green-500 text-green-500 shadow-md">
-              sun
-            </div>
-
-            <span className="px-3 border rounded-sm w-14 h-5 flex items-center justify-center border-green-500 text-green-500 shadow-md">
-              mon
-            </span>
-
-            <span className="px-3 border rounded-sm w-14 h-5 flex items-center justify-center border-green-500 text-green-500 shadow-md">
-              tue
-            </span>
-
-            <span className="px-3 border rounded-sm w-14 h-5 flex items-center justify-center border-green-500 text-green-500 shadow-md">
-              wed
-            </span>
-
-            <span className="px-3 border rounded-sm w-14 h-5 flex items-center justify-center border-green-500 text-green-500 shadow-md">
-              thu
-            </span>
-
-            <span className="px-3 border rounded-sm w-14 h-5 flex items-center justify-center border-green-500 text-green-500 shadow-md">
-              fri
-            </span>
-
-            <span className="px-3 border rounded-sm w-14 h-5 flex items-center justify-center border-green-500 text-green-500 shadow-md">
-              sat
-            </span>
-          </div>
-
-          <div className="flex justify-between font-medium text-sm pb-2">
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Cardio
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Weight Lifting
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Arms
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Legs
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Shoulder
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Free Hand
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Stamina
-            </span>
-          </div>
-          <div className="flex justify-between font-medium text-sm pb-2">
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Chest
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Back
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Stamina
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Weight Lifting
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Shoulder
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Leg
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Cardio
-            </span>
-          </div>
-
-          <div className="flex justify-between font-medium text-sm pb-2">
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Abdominal
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Free Hand
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Arms
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Stamina
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Back
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Abdominal
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Legs
-            </span>
-          </div>
-
-          <div className="flex justify-between font-medium text-sm pb-2">
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Cardio
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Arms
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Shoulder
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Back
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Weight Lifting
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Chest
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Stamina
-            </span>
-          </div>
-
-          <div className="flex justify-between font-medium text-sm pb-2">
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Weight Lifting
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Shoulder
-            </span>
-
-            <span className="px-1 w-14 flex justify-center items-center border hover:border-green-500 hover:text-green-500 cursor-pointer">
-              Arms
-            </span>
-
-            <span className="px-1 text-gray-400 w-14 flex justify-center items-center">
-              Stamina
-            </span>
-
-            <span className="px-1 text-gray-400 w-14 flex justify-center items-center">
-              Cardio
-            </span>
-
-            <span className="px-1 text-gray-400 w-14 flex justify-center items-center">
-              Legs
-            </span>
-
-            <span className="px-1 text-gray-400 w-14 flex justify-center items-center">
-              Abdominal
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* All classes */}
       <div className="my-[100px]">
-        <h2 className="mt-4 text-3xl text-center font-bold text-blue-900 sm:text-4xl xl:text-5xl">
-          Featured Classes
-        </h2>
-
         <div className="w-[80%] mx-auto mt-[60px] grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10">
-          {data.map((item, index) => (
-            <Card className="bg-gray-200 shadow-xl" key={index}>
-              <CardBody>
-                <Typography variant="h5" color="blue-gray" className="mb-2">
-                  <div className="line-clamp-1">{item.classTitle}</div>
-                </Typography>
-                <Typography>
-                  <div className="line-clamp-3">{item.classDescription}</div>
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-0">
-                <Link to={`/class/details/${item._id}`}>
-                  <Button>See Details</Button>
-                </Link>
-              </CardFooter>
-            </Card>
+          {currentItems.map((item, index) => (
+            <div
+              key={index}
+              className="w-full max-w-sm mx-auto bg-[#F0F0D7] border-2 border-blue-600 shadow-lg rounded-lg overflow-hidden"
+            >
+              {/* Image */}
+              <div className="relative w-full h-48">
+                <img
+                  src={item.image}
+                  alt={item.classTitle}
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-gray-800 line-clamp-1 mb-3">
+                  {item.classTitle}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                  {item.classDescription}
+                </p>
+
+                {/* Button */}
+                <div className="flex justify-center">
+                  <Link to={`/class/details/${item._id}`}>
+                    <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-all">
+                      See Details
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
           ))}
+        </div>
+
+        {/* Pagination controls */}
+        <div className="flex justify-center mt-16 space-x-3">
+          {/* Previous button */}
+          <button
+            onClick={handlePrev}
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50"
+          >
+            Previous
+          </button>
+
+          {/* Page numbers */}
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              className={`px-4 py-2 rounded-lg ${
+                currentPage === index + 1
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-800 hover:bg-blue-500 hover:text-white"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          {/* Next button */}
+          <button
+            onClick={handleNext}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

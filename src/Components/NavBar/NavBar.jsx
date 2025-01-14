@@ -12,7 +12,7 @@ import ProfileMenu from "./ProfileMenu";
 // Icons
 import { HiBars2 } from "react-icons/hi2";
 import { HiRocketLaunch } from "react-icons/hi2";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { BiLogInCircle } from "react-icons/bi";
 import useAuth from "../../Hooks/useAuth";
 
@@ -98,6 +98,12 @@ function NavList() {
 export default function NavBar() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
 
+  const navigate = useNavigate();
+
+  const handleGoHome = () => {
+    navigate();
+  };
+
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
   React.useEffect(() => {
@@ -111,7 +117,8 @@ export default function NavBar() {
     <div className="mx-auto p-2 shadow-lg sticky top-0 bg-[#eef1f3] z-20">
       <div className="w-[95%] mx-auto flex items-center text-blue-gray-900 justify-between">
         <img
-          className="w-[40%] md:w-[30%] lg:w-[20%] "
+          onClick={handleGoHome}
+          className="w-[40%] md:w-[30%] lg:w-[20%] cursor-pointer"
           src="https://i.ibb.co/q7L0zZ5/fit-Sync-prev-ui.png"
           alt=""
         />
