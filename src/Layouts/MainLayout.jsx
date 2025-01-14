@@ -8,7 +8,7 @@ const MainLayout = () => {
   return (
     <div>
       <NavBar />
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <ScrollToTop />
       <Outlet />
       <Footer />
