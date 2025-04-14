@@ -1,7 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import DashboardLoader from "../../../Utilities/DashboardLoader/DashboardLoader";
 import useAxios from "../../../Hooks/useAxios";
-import { Avatar, Chip, Dialog, Typography } from "@material-tailwind/react";
+import {
+  Avatar,
+  Chip,
+  Dialog,
+  Typography,
+  Button,
+} from "@material-tailwind/react";
 import { useState } from "react";
 
 import { Helmet } from "react-helmet-async";
@@ -79,6 +85,23 @@ const AllTrainers = () => {
       });
   };
 
+  // Pagination Logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const trainersPerPage = 6;
+
+  const indexOfLastTrainer = currentPage * trainersPerPage;
+  const indexOfFirstTrainer = indexOfLastTrainer - trainersPerPage;
+  const currentTrainers = trainers?.slice(
+    indexOfFirstTrainer,
+    indexOfLastTrainer
+  );
+
+  const totalPages = Math.ceil(trainers?.length / trainersPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   if (isLoading) {
     return <DashboardLoader />;
   }
@@ -90,7 +113,7 @@ const AllTrainers = () => {
       </Helmet>
 
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-9 mb-10">
-        {trainers.map((item, index) => (
+        {currentTrainers.map((item, index) => (
           <div className="booked-users shadow-lg hover:shadow-xl" key={index}>
             <div className="bg-[#f4e0c3] rounded-lg overflow-hidden shadow-lg transition-transform transform">
               <div className="flex justify-center items-center my-5">
@@ -127,6 +150,37 @@ const AllTrainers = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Pagination Buttons */}
+      <div className="flex justify-center items-center space-x-2 mb-10">
+        <Button
+          disabled={currentPage === 1}
+          onClick={() => handlePageChange(currentPage - 1)}
+          className="bg-blue-500 text-white px-3 py-1 rounded-lg disabled:opacity-50 p-3"
+        >
+          Previous
+        </Button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-3 py-1 rounded-lg ${
+              currentPage === index + 1
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <Button
+          disabled={currentPage === totalPages}
+          onClick={() => handlePageChange(currentPage + 1)}
+          className="bg-blue-500 text-white px-3 py-1 rounded-lg disabled:opacity-50 p-3"
+        >
+          Next
+        </Button>
       </div>
 
       <Dialog
