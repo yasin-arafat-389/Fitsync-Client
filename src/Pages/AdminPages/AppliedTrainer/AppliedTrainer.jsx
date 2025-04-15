@@ -87,13 +87,13 @@ const AppliedTrainer = () => {
   return (
     <div>
       <Helmet>
-        <title>FitSync | Applied Trainers</title>
+        <title>FitSync | Trainer Requests</title>
       </Helmet>
 
       <div>
         {trainers.length === 0 ? (
           <div className="mt-10">
-            <NoDataFound text="No Applied Trainers to show" />
+            <NoDataFound text="No Trainer Requests to show" />
           </div>
         ) : (
           <>
