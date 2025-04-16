@@ -93,7 +93,7 @@ const BeATrainer = () => {
       imgData = imageData;
     }
 
-    let uploadedImage = imgData?.data?.display_url;
+    let uploadedImage = imgData;
 
     let res = { formData, uploadedImage };
 
@@ -131,7 +131,7 @@ const BeATrainer = () => {
           <div>
             <div className="bg-orange-100">
               <div className="py-20">
-                <div className=" w-full max-w-sm mx-auto overflow-hidden rounded-lg shadow-md dark:bg-gray-800 bg-white">
+                <div className=" w-[80%] mx-auto overflow-hidden rounded-lg shadow-md dark:bg-gray-800 bg-white">
                   <div className="px-6 py-4">
                     <p className="title-join">Become A Trainer </p>
 
@@ -219,122 +219,118 @@ const BeATrainer = () => {
                           Select Your Skills
                         </h1>
 
-                        <div>
-                          <div className="w-full">
-                            <List className="flex-col">
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="body-building"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="body-building"
-                                      value="Body Building"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "skills")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Body Building
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                        <div className="grid grid-cols-1 mt-3 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                          <ListItem className="p-0">
+                            <label
+                              htmlFor="body-building"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="body-building"
+                                  value="Body Building"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "skills")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Body Building
+                              </Typography>
+                            </label>
+                          </ListItem>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="masculation"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="masculation"
-                                      value="Masculation"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "skills")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Masculation
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                          <ListItem className="p-0">
+                            <label
+                              htmlFor="masculation"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="masculation"
+                                  value="Masculation"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "skills")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Masculation
+                              </Typography>
+                            </label>
+                          </ListItem>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="weight-lifting"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="weight-lifting"
-                                      value="Weight Lifting"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "skills")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Weight Lifting
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                          <ListItem className="p-0">
+                            <label
+                              htmlFor="weight-lifting"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="weight-lifting"
+                                  value="Weight Lifting"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "skills")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Weight Lifting
+                              </Typography>
+                            </label>
+                          </ListItem>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="classic-yoga"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="classic-yoga"
-                                      value="Classic Yoga"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "skills")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Classic Yoga
-                                  </Typography>
-                                </label>
-                              </ListItem>
-                            </List>
-                          </div>
+                          <ListItem className="p-0">
+                            <label
+                              htmlFor="classic-yoga"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="classic-yoga"
+                                  value="Classic Yoga"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "skills")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Classic Yoga
+                              </Typography>
+                            </label>
+                          </ListItem>
                         </div>
                       </div>
 
@@ -344,205 +340,201 @@ const BeATrainer = () => {
                           Your Available time in a week
                         </h1>
 
-                        <div>
-                          <div className="w-full">
-                            <List className="flex-col">
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="sat"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="sat"
-                                      value="Saturday"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "availableDays")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Saturday
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                        <div className="grid mt-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                          <div className="p-0">
+                            <label
+                              htmlFor="sat"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="sat"
+                                  value="Saturday"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "availableDays")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Saturday
+                              </Typography>
+                            </label>
+                          </div>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="sun"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="sun"
-                                      value="Sunday"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "availableDays")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Sunday
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                          <div className="p-0">
+                            <label
+                              htmlFor="sun"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="sun"
+                                  value="Sunday"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "availableDays")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Sunday
+                              </Typography>
+                            </label>
+                          </div>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="mon"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="mon"
-                                      value="Monday"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "availableDays")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Monday
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                          <div className="p-0">
+                            <label
+                              htmlFor="mon"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="mon"
+                                  value="Monday"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "availableDays")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Monday
+                              </Typography>
+                            </label>
+                          </div>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="tue"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="tue"
-                                      value="Tuesday"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "availableDays")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Tuesday
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                          <div className="p-0">
+                            <label
+                              htmlFor="tue"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="tue"
+                                  value="Tuesday"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "availableDays")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Tuesday
+                              </Typography>
+                            </label>
+                          </div>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="wed"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="wed"
-                                      value="Wednesday"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "availableDays")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Wednesday
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                          <div className="p-0">
+                            <label
+                              htmlFor="wed"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="wed"
+                                  value="Wednesday"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "availableDays")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Wednesday
+                              </Typography>
+                            </label>
+                          </div>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="thu"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="thu"
-                                      value="Thursday"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "availableDays")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Thursday
-                                  </Typography>
-                                </label>
-                              </ListItem>
+                          <div className="p-0">
+                            <label
+                              htmlFor="thu"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="thu"
+                                  value="Thursday"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "availableDays")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Thursday
+                              </Typography>
+                            </label>
+                          </div>
 
-                              <ListItem className="p-0">
-                                <label
-                                  htmlFor="fri"
-                                  className="flex w-full cursor-pointer items-center px-3 py-2"
-                                >
-                                  <ListItemPrefix className="mr-3">
-                                    <Checkbox
-                                      id="fri"
-                                      value="Friday"
-                                      ripple={false}
-                                      className="hover:before:opacity-0"
-                                      containerProps={{
-                                        className: "p-0",
-                                      }}
-                                      onChange={(e) =>
-                                        handleCheckboxChange(e, "availableDays")
-                                      }
-                                    />
-                                  </ListItemPrefix>
-                                  <Typography
-                                    color="blue-gray"
-                                    className="font-medium"
-                                  >
-                                    Friday
-                                  </Typography>
-                                </label>
-                              </ListItem>
-                            </List>
+                          <div className="p-0">
+                            <label
+                              htmlFor="fri"
+                              className="flex w-full cursor-pointer items-center px-3 py-2"
+                            >
+                              <ListItemPrefix className="mr-3">
+                                <Checkbox
+                                  id="fri"
+                                  value="Friday"
+                                  ripple={false}
+                                  className="hover:before:opacity-0"
+                                  containerProps={{
+                                    className: "p-0",
+                                  }}
+                                  onChange={(e) =>
+                                    handleCheckboxChange(e, "availableDays")
+                                  }
+                                />
+                              </ListItemPrefix>
+                              <Typography
+                                color="blue-gray"
+                                className="font-medium"
+                              >
+                                Friday
+                              </Typography>
+                            </label>
                           </div>
                         </div>
                       </div>
@@ -558,197 +550,204 @@ const BeATrainer = () => {
                             <List className="flex-col">
                               <div className="morning">
                                 <h1 className="font-bold">Morning Shift</h1>
-                                <ListItem className="p-0">
-                                  <label
-                                    htmlFor="mor-1"
-                                    className="flex w-full cursor-pointer items-center px-3 py-2"
-                                  >
-                                    <ListItemPrefix className="mr-3">
-                                      <Checkbox
-                                        id="mor-1"
-                                        value="7 AM - 8 AM"
-                                        ripple={false}
-                                        className="hover:before:opacity-0"
-                                        containerProps={{
-                                          className: "p-0",
-                                        }}
-                                        onChange={(e) =>
-                                          handleCheckboxChange(
-                                            e,
-                                            "availableTime"
-                                          )
-                                        }
-                                      />
-                                    </ListItemPrefix>
-                                    <Typography
-                                      color="blue-gray"
-                                      className="font-medium"
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                                  <ListItem className="p-0">
+                                    <label
+                                      htmlFor="mor-1"
+                                      className="flex w-full cursor-pointer items-center px-3 py-2"
                                     >
-                                      7 AM - 8 AM
-                                    </Typography>
-                                  </label>
-                                </ListItem>
+                                      <ListItemPrefix className="mr-3">
+                                        <Checkbox
+                                          id="mor-1"
+                                          value="7 AM - 8 AM"
+                                          ripple={false}
+                                          className="hover:before:opacity-0"
+                                          containerProps={{
+                                            className: "p-0",
+                                          }}
+                                          onChange={(e) =>
+                                            handleCheckboxChange(
+                                              e,
+                                              "availableTime"
+                                            )
+                                          }
+                                        />
+                                      </ListItemPrefix>
+                                      <Typography
+                                        color="blue-gray"
+                                        className="font-medium"
+                                      >
+                                        7 AM - 8 AM
+                                      </Typography>
+                                    </label>
+                                  </ListItem>
 
-                                <ListItem className="p-0">
-                                  <label
-                                    htmlFor="mor-2"
-                                    className="flex w-full cursor-pointer items-center px-3 py-2"
-                                  >
-                                    <ListItemPrefix className="mr-3">
-                                      <Checkbox
-                                        id="mor-2"
-                                        value="9 AM - 10 AM"
-                                        ripple={false}
-                                        className="hover:before:opacity-0"
-                                        containerProps={{
-                                          className: "p-0",
-                                        }}
-                                        onChange={(e) =>
-                                          handleCheckboxChange(
-                                            e,
-                                            "availableTime"
-                                          )
-                                        }
-                                      />
-                                    </ListItemPrefix>
-                                    <Typography
-                                      color="blue-gray"
-                                      className="font-medium"
+                                  <ListItem className="p-0">
+                                    <label
+                                      htmlFor="mor-2"
+                                      className="flex w-full cursor-pointer items-center px-3 py-2"
                                     >
-                                      9 AM - 10 AM
-                                    </Typography>
-                                  </label>
-                                </ListItem>
+                                      <ListItemPrefix className="mr-3">
+                                        <Checkbox
+                                          id="mor-2"
+                                          value="9 AM - 10 AM"
+                                          ripple={false}
+                                          className="hover:before:opacity-0"
+                                          containerProps={{
+                                            className: "p-0",
+                                          }}
+                                          onChange={(e) =>
+                                            handleCheckboxChange(
+                                              e,
+                                              "availableTime"
+                                            )
+                                          }
+                                        />
+                                      </ListItemPrefix>
+                                      <Typography
+                                        color="blue-gray"
+                                        className="font-medium"
+                                      >
+                                        9 AM - 10 AM
+                                      </Typography>
+                                    </label>
+                                  </ListItem>
+                                </div>
                               </div>
 
-                              <div className="afternoon">
+                              <div className="afternoon mt-3">
                                 <h1 className="font-bold">Aftternoon Shift</h1>
-                                <ListItem className="p-0">
-                                  <label
-                                    htmlFor="aft-1"
-                                    className="flex w-full cursor-pointer items-center px-3 py-2"
-                                  >
-                                    <ListItemPrefix className="mr-3">
-                                      <Checkbox
-                                        id="aft-1"
-                                        value=" 2 PM - 3 PM"
-                                        ripple={false}
-                                        className="hover:before:opacity-0"
-                                        containerProps={{
-                                          className: "p-0",
-                                        }}
-                                        onChange={(e) =>
-                                          handleCheckboxChange(
-                                            e,
-                                            "availableTime"
-                                          )
-                                        }
-                                      />
-                                    </ListItemPrefix>
-                                    <Typography
-                                      color="blue-gray"
-                                      className="font-medium"
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                                  <ListItem className="p-0">
+                                    <label
+                                      htmlFor="aft-1"
+                                      className="flex w-full cursor-pointer items-center px-3 py-2"
                                     >
-                                      2 PM - 3 PM
-                                    </Typography>
-                                  </label>
-                                </ListItem>
+                                      <ListItemPrefix className="mr-3">
+                                        <Checkbox
+                                          id="aft-1"
+                                          value=" 2 PM - 3 PM"
+                                          ripple={false}
+                                          className="hover:before:opacity-0"
+                                          containerProps={{
+                                            className: "p-0",
+                                          }}
+                                          onChange={(e) =>
+                                            handleCheckboxChange(
+                                              e,
+                                              "availableTime"
+                                            )
+                                          }
+                                        />
+                                      </ListItemPrefix>
+                                      <Typography
+                                        color="blue-gray"
+                                        className="font-medium"
+                                      >
+                                        2 PM - 3 PM
+                                      </Typography>
+                                    </label>
+                                  </ListItem>
 
-                                <ListItem className="p-0">
-                                  <label
-                                    htmlFor="aft-2"
-                                    className="flex w-full cursor-pointer items-center px-3 py-2"
-                                  >
-                                    <ListItemPrefix className="mr-3">
-                                      <Checkbox
-                                        id="aft-2"
-                                        value="4 AM - 5 AM"
-                                        ripple={false}
-                                        className="hover:before:opacity-0"
-                                        containerProps={{
-                                          className: "p-0",
-                                        }}
-                                        onChange={(e) =>
-                                          handleCheckboxChange(
-                                            e,
-                                            "availableTime"
-                                          )
-                                        }
-                                      />
-                                    </ListItemPrefix>
-                                    <Typography
-                                      color="blue-gray"
-                                      className="font-medium"
+                                  <ListItem className="p-0">
+                                    <label
+                                      htmlFor="aft-2"
+                                      className="flex w-full cursor-pointer items-center px-3 py-2"
                                     >
-                                      4 PM - 5 PM
-                                    </Typography>
-                                  </label>
-                                </ListItem>
+                                      <ListItemPrefix className="mr-3">
+                                        <Checkbox
+                                          id="aft-2"
+                                          value="4 AM - 5 AM"
+                                          ripple={false}
+                                          className="hover:before:opacity-0"
+                                          containerProps={{
+                                            className: "p-0",
+                                          }}
+                                          onChange={(e) =>
+                                            handleCheckboxChange(
+                                              e,
+                                              "availableTime"
+                                            )
+                                          }
+                                        />
+                                      </ListItemPrefix>
+                                      <Typography
+                                        color="blue-gray"
+                                        className="font-medium"
+                                      >
+                                        4 PM - 5 PM
+                                      </Typography>
+                                    </label>
+                                  </ListItem>
+                                </div>
                               </div>
 
-                              <div className="night">
+                              <div className="night mt-3">
                                 <h1 className="font-bold">Night Shift</h1>
-                                <ListItem className="p-0">
-                                  <label
-                                    htmlFor="nig-1"
-                                    className="flex w-full cursor-pointer items-center px-3 py-2"
-                                  >
-                                    <ListItemPrefix className="mr-3">
-                                      <Checkbox
-                                        id="nig-1"
-                                        value=" 7 PM - 8 PM"
-                                        ripple={false}
-                                        className="hover:before:opacity-0"
-                                        containerProps={{
-                                          className: "p-0",
-                                        }}
-                                        onChange={(e) =>
-                                          handleCheckboxChange(
-                                            e,
-                                            "availableTime"
-                                          )
-                                        }
-                                      />
-                                    </ListItemPrefix>
-                                    <Typography
-                                      color="blue-gray"
-                                      className="font-medium"
-                                    >
-                                      7 PM - 8 PM
-                                    </Typography>
-                                  </label>
-                                </ListItem>
 
-                                <ListItem className="p-0">
-                                  <label
-                                    htmlFor="nig-2"
-                                    className="flex w-full cursor-pointer items-center px-3 py-2"
-                                  >
-                                    <ListItemPrefix className="mr-3">
-                                      <Checkbox
-                                        id="nig-2"
-                                        value=" 9 PM - 10 PM"
-                                        ripple={false}
-                                        className="hover:before:opacity-0"
-                                        containerProps={{
-                                          className: "p-0",
-                                        }}
-                                        onChange={(e) =>
-                                          handleCheckboxChange(
-                                            e,
-                                            "availableTime"
-                                          )
-                                        }
-                                      />
-                                    </ListItemPrefix>
-                                    <Typography
-                                      color="blue-gray"
-                                      className="font-medium"
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                                  <ListItem className="p-0">
+                                    <label
+                                      htmlFor="nig-1"
+                                      className="flex w-full cursor-pointer items-center px-3 py-2"
                                     >
-                                      9 PM - 10 PM
-                                    </Typography>
-                                  </label>
-                                </ListItem>
+                                      <ListItemPrefix className="mr-3">
+                                        <Checkbox
+                                          id="nig-1"
+                                          value=" 7 PM - 8 PM"
+                                          ripple={false}
+                                          className="hover:before:opacity-0"
+                                          containerProps={{
+                                            className: "p-0",
+                                          }}
+                                          onChange={(e) =>
+                                            handleCheckboxChange(
+                                              e,
+                                              "availableTime"
+                                            )
+                                          }
+                                        />
+                                      </ListItemPrefix>
+                                      <Typography
+                                        color="blue-gray"
+                                        className="font-medium"
+                                      >
+                                        7 PM - 8 PM
+                                      </Typography>
+                                    </label>
+                                  </ListItem>
+
+                                  <ListItem className="p-0">
+                                    <label
+                                      htmlFor="nig-2"
+                                      className="flex w-full cursor-pointer items-center px-3 py-2"
+                                    >
+                                      <ListItemPrefix className="mr-3">
+                                        <Checkbox
+                                          id="nig-2"
+                                          value=" 9 PM - 10 PM"
+                                          ripple={false}
+                                          className="hover:before:opacity-0"
+                                          containerProps={{
+                                            className: "p-0",
+                                          }}
+                                          onChange={(e) =>
+                                            handleCheckboxChange(
+                                              e,
+                                              "availableTime"
+                                            )
+                                          }
+                                        />
+                                      </ListItemPrefix>
+                                      <Typography
+                                        color="blue-gray"
+                                        className="font-medium"
+                                      >
+                                        9 PM - 10 PM
+                                      </Typography>
+                                    </label>
+                                  </ListItem>
+                                </div>
                               </div>
                             </List>
                           </div>
