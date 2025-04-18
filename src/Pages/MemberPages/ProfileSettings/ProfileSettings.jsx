@@ -45,7 +45,7 @@ const ProfileSettings = () => {
       imgData = imageData;
     }
 
-    update(user?.displayName, imgData?.data?.display_url)
+    update(user?.displayName, imgData)
       .then(() => {
         setLoading(false);
         setOpen1(!open1);
