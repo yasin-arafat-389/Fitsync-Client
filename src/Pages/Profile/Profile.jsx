@@ -123,6 +123,20 @@ const Profile = () => {
               </Typography>
             </div>
           </div>
+
+          {/* Information Section */}
+          <div className="px-7 pb-7 text-center pt-6">
+            <div className="flex flex-col gap-4 text-gray-700 dark:text-gray-300">
+              <div className="inline-flex items-center gap-2">
+                <MdOutlineMail fontSize={20} />
+                {user?.email}
+              </div>
+              <div className="inline-flex items-center gap-2 capitalize">
+                <FiUser fontSize={20} />
+                {role}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
