@@ -137,6 +137,69 @@ const Profile = () => {
               </div>
             </div>
           </div>
+
+          {/* Profile Picture Dialog */}
+          <Dialog
+            size="xs"
+            open={open1}
+            handler={handleOpen1}
+            className="bg-transparent shadow-none"
+          >
+            <form onSubmit={handleProfilePictureChange}>
+              <Card className="mx-auto w-full max-w-[24rem]">
+                <CardBody className="flex flex-col gap-4">
+                  <Typography variant="h5" color="blue-gray">
+                    Change your profile picture
+                  </Typography>
+
+                  <div className="w-full mt-4">
+                    <div>
+                      <label className="flex gap-4 p-2 cursor-pointer border-2 border-gray-400 rounded-lg shadow-xl justify-center items-center">
+                        <svg
+                          className="w-8 h-8"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                        </svg>
+                        <span className="text-base font-medium  elipsis elipse">
+                          {selectedFile
+                            ? selectedFile.name
+                            : "Select profile picture"}
+                        </span>
+                        <input
+                          type="file"
+                          className="hidden"
+                          onChange={handleFileChange}
+                          id="image"
+                          name="image"
+                          accept="image/*"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </CardBody>
+                <CardFooter className="pt-0">
+                  <Button
+                    variant="gradient"
+                    disabled={loading ? true : false}
+                    fullWidth
+                    type="submit"
+                  >
+                    {loading ? (
+                      <div className="flex justify-center items-center gap-4">
+                        <ImSpinner9 className="animate-spin text-[20px]" />
+                        Changing Name
+                      </div>
+                    ) : (
+                      "Change"
+                    )}
+                  </Button>
+                </CardFooter>
+              </Card>
+            </form>
+          </Dialog>
         </div>
       </div>
     </div>
