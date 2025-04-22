@@ -200,6 +200,48 @@ const Profile = () => {
               </Card>
             </form>
           </Dialog>
+
+          {/* Name Change Dialog */}
+          <Dialog
+            size="xs"
+            open={open}
+            handler={handleOpen}
+            className="bg-transparent shadow-none"
+          >
+            <form onSubmit={handleChangeName}>
+              <Card className="mx-auto w-full max-w-[24rem]">
+                <CardBody className="flex flex-col gap-4">
+                  <Typography variant="h4" color="blue-gray">
+                    Change your name
+                  </Typography>
+
+                  <Input
+                    label="Name"
+                    size="lg"
+                    value={yourName}
+                    onChange={(e) => setYourName(e.target.value)}
+                  />
+                </CardBody>
+                <CardFooter className="pt-0">
+                  <Button
+                    variant="gradient"
+                    disabled={loading || !yourName ? true : false}
+                    fullWidth
+                    type="submit"
+                  >
+                    {loading ? (
+                      <div className="flex justify-center items-center gap-4">
+                        <ImSpinner9 className="animate-spin text-[20px]" />
+                        Changing Name
+                      </div>
+                    ) : (
+                      "Change"
+                    )}
+                  </Button>
+                </CardFooter>
+              </Card>
+            </form>
+          </Dialog>
         </div>
       </div>
     </div>
