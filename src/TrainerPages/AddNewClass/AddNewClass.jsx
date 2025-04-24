@@ -28,6 +28,7 @@ const AddNewClass = () => {
     classDescription: "",
     intensity: "",
     seatCapacity: "",
+    image: "",
   });
 
   const handleInputChange = (e) => {
@@ -102,6 +103,15 @@ const AddNewClass = () => {
               label="Class Title"
               required
             />
+
+            <Input
+              name="image"
+              value={formData.image}
+              onChange={handleInputChange}
+              label="Class Thumbnail Image URL"
+              required
+            />
+
             <Textarea
               name="classDescription"
               value={formData.classDescription}
@@ -109,6 +119,7 @@ const AddNewClass = () => {
               label="Class Description"
               required
             />
+
             <Select
               name="intensity"
               value={formData.intensity}
